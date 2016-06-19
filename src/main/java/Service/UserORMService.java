@@ -1,7 +1,6 @@
 /**
  * Created by Siclait on 19/6/16.
  */
-
 package Service;
 
 import Entity.User;

@@ -1,7 +1,6 @@
 /**
  * Created by Siclait on 19/6/16.
  */
-
 package Service;
 
 import Entity.URL;
@@ -15,7 +14,7 @@ public class URLORMService extends GenericORMService<URL>{
     }
 
     public URLORMService GetInstance(){
-        
+
         if(instance == null)
             instance = new URLORMService();
 
