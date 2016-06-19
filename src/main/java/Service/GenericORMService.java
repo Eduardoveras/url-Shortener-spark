@@ -58,4 +58,36 @@ public class GenericORMService<T> {
         }
     }
 
+    public void Edit(T entity) {
+
+        EntityManager em = GetEntityManager();
+
+        em.getTransaction().begin();
+
+        try {
+
+            em.merge(entity);
+            em.getTransaction().commit();
+
+        } catch (EntityNotFoundException exp) {
+            System.out.println("\n\nEntity ERROR! --> " + exp.getMessage() + "\n\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } catch (TransactionRequiredException exp) {
+            System.out.println("\n\nTransaction ERROR! --> " + exp.getMessage() + "\n\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } catch (PersistenceException exp) {
+            System.out.println("\n\nPersistence ERROR! --> " + exp.getMessage() + "\n\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } catch (Exception exp) {
+            System.out.println("\n\nGeneral ERROR! --> " + exp.getMessage() + "\n\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } finally {
+            em.close();
+        }
+    }
+    
 }
