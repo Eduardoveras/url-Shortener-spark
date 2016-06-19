@@ -1,8 +1,11 @@
-import java.util.UUID;
-
 /**
  * Created by Eduardo veras on 19-Jun-16.
+ * Edited by Siclait on 19-Jun-16
  */
+package Entity;
+
+import java.util.UUID;
+
 public class URL {
 
     public String id;
