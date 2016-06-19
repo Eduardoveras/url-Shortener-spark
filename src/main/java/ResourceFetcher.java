@@ -5,6 +5,7 @@ public class ResourceFetcher {
 
     public static String getDescription(String url)
     {
+        //CHECK: http://screenshotmachine.com/apiguide.php
         return "Descripcion";
     }
 
