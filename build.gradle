@@ -1,0 +1,66 @@
+group 'org.evapps.thegroup'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+
+
+apply plugin: 'java'
+//apply plugin: 'jetty'
+apply plugin: 'application'
+
+mainClassName = 'Main'
+applicationName = 'app'
+
+defaultTasks = ['clean', 'jar']
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'hello.MainServer'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } {
+        // remove all signature files
+        exclude 'MET' +
+                'A-INF/*.SF'
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.RSA'
+    }
+}
+task stage(dependsOn: ['clean', 'installApp'])
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // Sparkjava and FreeMarker
+    compile "com.sparkjava:spark-core:2.4"
+    compile 'com.sparkjava:spark-debug-tools:0.5'
+    compile group: 'com.sparkjava', name: 'spark-template-freemarker', version: '2.3'
+
+    //Slf4j Library -> Sparkjava extension
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.5.1'
+
+    // H2 Data Base
+    compile group: 'com.h2database', name: 'h2', version: '1.4.192'
+
+    // Jsoup
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.9.2'
+
+    // ORM - Hibernate
+    compile "org.hibernate:hibernate-core:5.2.0.Final"
+    compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+
+    // J2HTML
+    compile group: 'com.j2html', name: 'j2html', version: '0.7'
+}
+
+defaultTasks = ['clean']
