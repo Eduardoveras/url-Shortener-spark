@@ -1,12 +1,12 @@
 /**
  * Created by Eduardo veras on 19-Jun-16.
- * Edited by Siclait on 19-Juu-16
+ * Edited by Siclait on 19-Jun-16
  */
 
 import Entity.*;
 import Service.*;
 
-import javax.jws.soap.SOAPBinding;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 public class DatabaseManager {
@@ -18,7 +18,7 @@ public class DatabaseManager {
 
     public static void BootDataBase(){
 
-        List<User> users = UserORMService.GetInstance().FindAll();
+        List<User> users = FetchAllUsers();
 
         if(users.size() == 0)
         {
@@ -32,7 +32,7 @@ public class DatabaseManager {
             System.out.println("Admins created successfully!\n");
         }
         else
-            System.out.println("\n\nDatabase already created!\n");
+            System.out.println("\n\nDatabase already configured!\n");
 
     }
 
@@ -66,11 +66,16 @@ public class DatabaseManager {
     public static void MakeAdmin(String username){
 
         if(!CheckUserCredentials(username)) {
+
+            System.out.println("\n\nMaking new Admin ...");
+
             User user = UserORMService.GetInstance().Find(username);
 
             user.setAdmin(true);
 
             UserORMService.GetInstance().Edit(user);
+
+            System.out.println("Admin created successfully!\n");
         }
         else
             System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
@@ -83,15 +88,29 @@ public class DatabaseManager {
     }
 
     // User Related Functions
-    public static void CreateNewUser(String username, String firstName, String lastName, String password){
+    public static boolean CreateNewUser(String username, String firstName, String lastName, String password){
 
-        UserORMService.GetInstance().Create(new User(username, firstName, lastName, password, false));
+        try {
+
+            UserORMService.GetInstance().Create(new User(username, firstName, lastName, password, false));
+            return true;
+        } catch (PersistenceException exp){
+            System.out.println("User, " + username + ", already exist\n\n");
+            return false;
+        }
     }
 
     // Used for general user
-    public static void DeleteUserAccount(String username){
+    public static boolean DeleteUserAccount(String username){
 
-        UserORMService.GetInstance().Delete(UserORMService.GetInstance().Find(username));
+        try{
+
+            UserORMService.GetInstance().Delete(UserORMService.GetInstance().Find(username));
+            return true;
+        } catch (Exception exp){
+            System.out.println("This user does not exist\n\n");
+            return false;
+        }
     }
 
     // TODO: Add change user password function
