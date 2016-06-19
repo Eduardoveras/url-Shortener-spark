@@ -24,7 +24,7 @@ public class pageCreator {
 
         get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            //attributes.put("message", "Welcome");
+            attributes.put("message", "Welcome");
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());
 
