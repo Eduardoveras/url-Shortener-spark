@@ -1,5 +1,5 @@
 /**
- * Created by Guest on 19/6/16.
+ * Created by Siclait on 19/6/16.
  */
 
 package Service;
@@ -15,6 +15,7 @@ public class UserORMService extends GenericORMService<User>{
     }
 
     public static UserORMService GetInstance(){
+
         if(instance == null)
             instance = new UserORMService();
 
