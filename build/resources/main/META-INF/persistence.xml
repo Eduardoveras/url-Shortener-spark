@@ -7,8 +7,11 @@
              version="2.1">
     <persistence-unit name="PersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>Entity.DateLog</class>
+        <class>Entity.URL</class>
+        <class>Entity.User</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/Blog" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/URL" />
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
             <property name="javax.persistence.jdbc.user" value="sa" />
             <property name="javax.persistence.jdbc.password" value="" />
