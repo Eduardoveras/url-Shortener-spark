@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sparkjava:spark-debug-tools:0.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sparkjava/spark-debug-tools/0.5/97e74534a991006db76c884e3b0ee41c9d40fad3/spark-debug-tools-0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sparkjava/spark-debug-tools/0.5/dc9b8808ebb33f4fe70ba7f311be416fe37620a7/spark-debug-tools-0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
