@@ -61,6 +61,10 @@ dependencies {
 
     // J2HTML
     compile group: 'com.j2html', name: 'j2html', version: '0.7'
+
+
+    //Google api
+    compile 'com.google.api-client:google-api-client:1.19.1'
 }
 
 defaultTasks = ['clean']
