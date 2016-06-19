@@ -38,19 +38,19 @@ public class GenericORMService<T> {
             em.getTransaction().commit();
 
         } catch (EntityNotFoundException exp){
-            System.out.println("\n\nEntity ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nEntity ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw  exp;
         } catch (TransactionRequiredException exp) {
-            System.out.println("\n\nTransaction ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nTransaction ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw  exp;
         } catch (PersistenceException exp){
-            System.out.println("\n\nPersistence ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nPersistence ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw  exp;
         } catch (Exception exp){
-            System.out.println("\n\nGeneral ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nGeneral ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw  exp;
         } finally{
@@ -70,24 +70,55 @@ public class GenericORMService<T> {
             em.getTransaction().commit();
 
         } catch (EntityNotFoundException exp) {
-            System.out.println("\n\nEntity ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nEntity ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw exp;
         } catch (TransactionRequiredException exp) {
-            System.out.println("\n\nTransaction ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nTransaction ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw exp;
         } catch (PersistenceException exp) {
-            System.out.println("\n\nPersistence ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nPersistence ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw exp;
         } catch (Exception exp) {
-            System.out.println("\n\nGeneral ERROR! --> " + exp.getMessage() + "\n\n");
+            System.out.println("\n\nGeneral ERROR! --> " + exp.getMessage() + "\n");
             em.getTransaction().rollback();
             throw exp;
         } finally {
             em.close();
         }
     }
-    
+
+    public void Delete(T entity){
+
+        EntityManager em = GetEntityManager();
+
+        em.getTransaction().begin();
+
+        try {
+            
+            em.remove(em.contains(entity) ? entity : em.merge(entity));
+            em.getTransaction().commit();
+
+        } catch (EntityNotFoundException exp) {
+            System.out.println("\n\nEntity ERROR! --> " + exp.getMessage() + "\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } catch (TransactionRequiredException exp) {
+            System.out.println("\n\nTransaction ERROR! --> " + exp.getMessage() + "\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } catch (PersistenceException exp) {
+            System.out.println("\n\nPersistence ERROR! --> " + exp.getMessage() + "\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } catch (Exception exp) {
+            System.out.println("\n\nGeneral ERROR! --> " + exp.getMessage() +  "\n");
+            em.getTransaction().rollback();
+            throw exp;
+        } finally {
+            em.close();
+        }
+    }
 }
