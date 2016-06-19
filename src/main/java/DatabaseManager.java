@@ -6,6 +6,7 @@
 import Entity.*;
 import Service.*;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 public class DatabaseManager {
@@ -35,14 +36,50 @@ public class DatabaseManager {
 
     }
 
-    // Database root Commands : Security/Authentification
-    // Admin and Server only
-    public static boolean CheckUserCredentials(String option){ return false; }
+    /*
+     * Database root Commands : Security/Authentification
+     * Admin and Server only
+     */
+    public static boolean CheckUserCredentials(String username, String password){
 
-    public static void MakeAdmin(){ }
+        User user = UserORMService.GetInstance().Find(username);
 
+        if(user == null) // User does not exist
+            return false;
+        else if(user.getPassword().equals(password)) // Password Correct
+            return true;
+        else // Password Incorrect
+            return false;
+    }
+
+    public static boolean CheckUserCredentials(String username){
+
+        User user = UserORMService.GetInstance().Find(username);
+
+        if(user == null) // User does not exist
+            return false;
+        else
+            return user.isAdmin();
+    }
+
+    // Exclusive to Admin
+    public static void MakeAdmin(String username){
+
+        if(!CheckUserCredentials(username)) {
+            User user = UserORMService.GetInstance().Find(username);
+
+            user.setAdmin(true);
+
+            UserORMService.GetInstance().Edit(user);
+        }
+        else
+            System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
+    }
+
+    // Exclusive to Admin
     public static void DeleteUser(){ }
 
+    // Exclusive to Admin
     public static void FetchAllUsers(){ }
 
     // User Related Functions
@@ -51,6 +88,7 @@ public class DatabaseManager {
         UserORMService.GetInstance().Create(new User(username, firstName, lastName, password, false));
     }
 
+    // Used for general user
     public static void DeleteUserAccount(String username){
 
         UserORMService.GetInstance().Delete(UserORMService.GetInstance().Find(username));
