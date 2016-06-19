@@ -77,10 +77,10 @@ public class DatabaseManager {
     }
 
     // Exclusive to Admin
-    public static void DeleteUser(){ }
+    public static List<User> FetchAllUsers(){
 
-    // Exclusive to Admin
-    public static void FetchAllUsers(){ }
+        return UserORMService.GetInstance().FindAll();
+    }
 
     // User Related Functions
     public static void CreateNewUser(String username, String firstName, String lastName, String password){
