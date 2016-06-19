@@ -23,7 +23,6 @@
             <property name="hibernate.connection.pool_size" value="30"/>
             <property name="hibernate.format_sql" value="true" />
 
-
         </properties>
     </persistence-unit>
 </persistence>
