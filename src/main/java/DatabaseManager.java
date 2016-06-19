@@ -35,10 +35,27 @@ public class DatabaseManager {
 
     }
 
-    // Database Commands
+    // Database root Commands : Security/Authentification
+    // Admin and Server only
     public static boolean CheckUserCredentials(String option){ return false; }
 
     public static void MakeAdmin(){ }
 
+    public static void DeleteUser(){ }
+
+    public static void FetchAllUsers(){ }
+
+    // User Related Functions
+    public static void CreateNewUser(String username, String firstName, String lastName, String password){
+
+        UserORMService.GetInstance().Create(new User(username, firstName, lastName, password, false));
+    }
+
+    public static void DeleteUserAccount(String username){
+
+        UserORMService.GetInstance().Delete(UserORMService.GetInstance().Find(username));
+    }
+
+    // TODO: Add change user password function
 
 }
