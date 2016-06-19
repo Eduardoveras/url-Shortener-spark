@@ -34,4 +34,11 @@ public class DatabaseManager {
             System.out.println("\n\nDatabase already created!\n");
 
     }
+
+    // Database Commands
+    public static boolean CheckUserCredentials(String option){ return false; }
+
+    public static void MakeAdmin(){ }
+
+
 }
