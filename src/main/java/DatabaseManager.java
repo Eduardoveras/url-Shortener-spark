@@ -5,6 +5,7 @@
 
 import Entity.*;
 import Service.*;
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile;
 
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
@@ -35,6 +36,14 @@ public class DatabaseManager {
         else
             System.out.println("\n\nDatabase already configured!\n");
 
+
+        CreateNewShortURL("http://facebook.com", "Wardo", "Chrome", "Windows","Dominican Republic");
+        CreateNewShortURL("http://fb.com", "Djsiclait", "Chrome", "Linux","Dominican Republic");
+        CreateNewShortURL("http://youtube.com", "EmmJ", "Mozzila", "Windows","Chile");
+        CreateNewShortURL("http://tumblr.com", "Wardo", "Explorer", "Mac OS","France");
+        CreateNewShortURL("http://wikipeia.com", "EmmJ", "Opera", "Linux","Dominican Republic");
+        CreateNewShortURL("http://facebook.com", "Djsiclait", "Safari", "Mac OS","Germany");
+        CreateNewShortURL("http://fb.com", "Wardo", "Chrome", "Linux","Canada");
     }
 
     /*
@@ -77,6 +86,18 @@ public class DatabaseManager {
         return false;
     }
 
+    private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country){
+
+        try{
+
+            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
+            return true;
+        } catch (Exception exp){
+            System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
+            return false;
+        }
+    }
+    
     // Exclusive to Admin
     public static void MakeAdmin(String username){
 
@@ -144,6 +165,19 @@ public class DatabaseManager {
         return browsers;
     }
 
+    private static String FetchShortURL(String originalURL, String username){
+
+        List<URL> urls = FetchAllURL();
+
+        for (URL url:
+             urls) {
+            if(url.getOriginalURL().equals(originalURL) && url.getUser().getUsername().equals(username))
+                return url.getShortURL();
+        }
+
+        return null;
+    }
+
     // Exclusive to Admin
     public static ArrayList<String> FetchAllOS(){
         ArrayList<String> os = new ArrayList<>();
@@ -200,7 +234,7 @@ public class DatabaseManager {
     // TODO: Add change user password function
 
     // URL Related Functions
-    public static boolean CreateNewShortURL(String original, String username){
+    public static boolean CreateNewShortURL(String original, String username, String browser, String OS, String country){
 
         try{
 
@@ -210,10 +244,15 @@ public class DatabaseManager {
             }
 
             URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username)));
-            return true;
+
         } catch (PersistenceException exp){
             System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");
             return false;
+        } finally{
+
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, country))
+                System.out.println("\n\nInfoLog Updated Successfully!\n");
+            return true;
         }
     }
 
@@ -257,14 +296,4 @@ public class DatabaseManager {
     }
 
     // Data Related Functions
-    public static void CompileInfoLogData(String shortURL, String browser, String OS, String country){
-
-        try{
-
-            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
-
-        } catch (Exception exp){
-            System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
-        }
-    }
 }

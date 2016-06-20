@@ -4,10 +4,7 @@
 
 package Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -18,6 +15,7 @@ public class InfoLog implements Serializable {
 
     // Attributes
     @Id
+    @GeneratedValue
     @Column(name = "ID")
     private Integer id;
 
