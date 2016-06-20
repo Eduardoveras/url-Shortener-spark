@@ -10,8 +10,7 @@ public class ResourceFetcher {
 
     public static String getQrCodeURL(String url) {
 
-        String TheUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + url + "&size=150x150";
-
+        String TheUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + url + "&size=150x150&color=0-0-0&bgcolor=FFFF00&format=png";
             return "TheUrl";
     }
 
