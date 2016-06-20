@@ -7,8 +7,7 @@ import Entity.*;
 import Service.*;
 
 import javax.persistence.PersistenceException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DatabaseManager {
 
@@ -35,13 +34,6 @@ public class DatabaseManager {
         else
             System.out.println("\n\nDatabase already configured!\n");
 
-
-        ArrayList<String> countries = FetchAllOS();
-
-        for (String country:
-             countries) {
-            System.out.println(country);
-        }
     }
 
     /*
@@ -133,8 +125,7 @@ public class DatabaseManager {
         return false;
     }
 
-    // Exclusive to Admin
-    public static ArrayList<String> FetchAllCountries(){
+    private static ArrayList<String> FetchAllCountries(){
         ArrayList<String> countries = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -149,7 +140,29 @@ public class DatabaseManager {
     }
 
     // Exclusive to Admin
-    public static ArrayList<String> FetchAllBrowser(){
+    public static Map<String, Integer> FetchAllCountryData(){
+        ArrayList<String> log = new ArrayList<>();
+        Map<String, Integer> countries = new HashMap<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getCountry(), log)){
+                log.add(data.getCountry());
+                countries.put(data.getCountry(), 1);
+            }
+            else{
+                Integer bubble = countries.remove(data.getCountry());
+
+                countries.put(data.getCountry(), bubble + 1);
+            }
+        }
+
+        return countries;
+    }
+
+    private static ArrayList<String> FetchAllBrowser(){
         ArrayList<String> browsers = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -164,7 +177,29 @@ public class DatabaseManager {
     }
 
     // Exclusive to Admin
-    public static ArrayList<String> FetchAllOS(){
+    public static Map<String, Integer> FetchAllBrowserData(){
+        ArrayList<String> log = new ArrayList<>();
+        Map<String, Integer> browsers = new HashMap<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getBrowser(), log)){
+                log.add(data.getBrowser());
+                browsers.put(data.getBrowser(), 1);
+            }
+            else{
+                Integer bubble = browsers.remove(data.getBrowser());
+
+                browsers.put(data.getBrowser(), bubble + 1);
+            }
+        }
+
+        return browsers;
+    }
+
+    private static ArrayList<String> FetchAllOS(){
         ArrayList<String> os = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -176,6 +211,29 @@ public class DatabaseManager {
         }
 
         return os;
+    }
+
+    // Exclusive to Admin
+    public static Map<String, Integer> FetchAllOSData(){
+        ArrayList<String> log = new ArrayList<>();
+        Map<String, Integer> OS = new HashMap<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getOS(), log)){
+                log.add(data.getOS());
+                OS.put(data.getOS(), 1);
+            }
+            else{
+                Integer bubble = OS.remove(data.getOS());
+
+                OS.put(data.getOS(), bubble + 1);
+            }
+        }
+
+        return OS;
     }
 
     private static String FetchShortURL(String originalURL, String username){
