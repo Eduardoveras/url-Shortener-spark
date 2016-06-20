@@ -257,5 +257,14 @@ public class DatabaseManager {
     }
 
     // Data Related Functions
-    
+    public static void CompileInfoLogData(String shortURL, String browser, String OS, String country){
+
+        try{
+
+            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
+
+        } catch (Exception exp){
+            System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
+        }
+    }
 }
