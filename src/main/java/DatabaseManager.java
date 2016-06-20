@@ -36,14 +36,6 @@ public class DatabaseManager {
         else
             System.out.println("\n\nDatabase already configured!\n");
 
-
-        CreateNewShortURL("http://facebook.com", "Wardo", "Chrome", "Windows","Dominican Republic");
-        CreateNewShortURL("http://fb.com", "Djsiclait", "Chrome", "Linux","Dominican Republic");
-        CreateNewShortURL("http://youtube.com", "EmmJ", "Mozzila", "Windows","Chile");
-        CreateNewShortURL("http://tumblr.com", "Wardo", "Explorer", "Mac OS","France");
-        CreateNewShortURL("http://wikipeia.com", "EmmJ", "Opera", "Linux","Dominican Republic");
-        CreateNewShortURL("http://facebook.com", "Djsiclait", "Safari", "Mac OS","Germany");
-        CreateNewShortURL("http://fb.com", "Wardo", "Chrome", "Linux","Canada");
     }
 
     /*
@@ -97,7 +89,7 @@ public class DatabaseManager {
             return false;
         }
     }
-    
+
     // Exclusive to Admin
     public static void MakeAdmin(String username){
 
@@ -296,4 +288,10 @@ public class DatabaseManager {
     }
 
     // Data Related Functions
+    public static void TriggerForEveryUse(String shortURL, String browser, String OS, String country){
+
+        if(CompileInfoLogData(shortURL, browser, OS, country))
+            System.out.println("\n\nInfoLog Updated Successfully!\n");
+
+    }
 }
