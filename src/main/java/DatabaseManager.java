@@ -144,8 +144,16 @@ public class DatabaseManager {
         }
     }
 
-    public static void FetchOriginalURL(){
+    public static String FetchOriginalURL(String shortURL){
 
+        try{
+
+            URL shURL = URLORMService.GetInstance().Find(shortURL);
+            return shURL.getOriginalURL();
+        } catch (Exception exp){
+            System.out.println("\n\nThis short url does not exist\n");
+            return null;
+        }
     }
 
     public static void FetchAllURLForUser(){
