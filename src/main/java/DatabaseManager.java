@@ -82,8 +82,9 @@ public class DatabaseManager {
             System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
     }
 
-    public static void FetchAllURL(){
+    public static List<URL> FetchAllURL(){
 
+        return URLORMService.GetInstance().FindAll();
     }
 
     // Exclusive to Admin
