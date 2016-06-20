@@ -7,6 +7,7 @@ import Entity.*;
 import Service.*;
 
 import javax.persistence.PersistenceException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseManager {
@@ -156,7 +157,18 @@ public class DatabaseManager {
         }
     }
 
-    public static void FetchAllURLForUser(){
+    public static ArrayList<URL> FetchAllURLForUser(String username){
 
+        ArrayList<URL> userURL = new ArrayList<>();
+
+        List<URL> urls = URLORMService.GetInstance().FindAll();
+
+        for (URL url:
+             urls) {
+            if(url.getUser().getUsername().equals(UserORMService.GetInstance().Find(username).getUsername()))
+                userURL.add(url);
+        }
+
+        return userURL;
     }
 }
