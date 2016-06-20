@@ -13,7 +13,7 @@ public class URLORMService extends GenericORMService<URL>{
         super(URL.class);
     }
 
-    public URLORMService GetInstance(){
+    public static URLORMService GetInstance(){
 
         if(instance == null)
             instance = new URLORMService();

@@ -120,8 +120,16 @@ public class DatabaseManager {
     // TODO: Add change user password function
 
     // URL Related Functions
-    public static void CreateNewShortURL(){
+    public static boolean CreateNewShortURL(String original, String username){
 
+        try{
+
+            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username)));
+            return true;
+        } catch (PersistenceException exp){
+            System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");
+            return false;
+        }
     }
 
     public static void DeleteShortURL(){
@@ -129,7 +137,7 @@ public class DatabaseManager {
     }
 
     public static void FetchOriginalURL(){
-        
+
     }
 
     public static void FetchAllURLForUser(){
