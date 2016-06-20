@@ -11,6 +11,8 @@ public class Main {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
 
+        DatabaseManager.BootDataBase();
+
         pageCreator pages = new pageCreator();
     }
 

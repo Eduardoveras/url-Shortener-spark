@@ -25,17 +25,21 @@ public class User implements Serializable {
     @Column(name = "PASSWORD", length = 30, nullable = false)
     private String password;
 
+    @Column(name = "ADMIN")
+    private boolean admin;
+
     // Constructors
     public User(){
 
     }
 
-    public User(String username, String firstName, String lastName, String password){
+    public User(String username, String firstName, String lastName, String password,  boolean admin){
 
         this.setUsername(username);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setPassword(password);
+        this.setAdmin(admin);
 
     }
 
@@ -70,5 +74,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

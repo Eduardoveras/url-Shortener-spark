@@ -7,7 +7,7 @@
              version="2.1">
     <persistence-unit name="PersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>Entity.DateLog</class>
+        <class>Entity.InfoLog</class>
         <class>Entity.URL</class>
         <class>Entity.User</class>
         <properties>

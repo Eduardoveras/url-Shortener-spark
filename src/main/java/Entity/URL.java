@@ -21,7 +21,7 @@ public class URL implements Serializable {
     @Column(name = "ORIGINAL")
     private String originalURL;
 
-    @ManyToOne  // @Column not allowe iinn many to one relationship
+    @ManyToOne  // @Column not allowed in many to one relationship
     private User user;
 
     // Constructor
