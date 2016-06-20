@@ -164,3 +164,12 @@ _:-ms-input-placeholder, :root .demo-graph {
     box-sizing: border-box;
     align-items: center;
 }
+.full-width-card
+{
+    width: 99%;
+}
+.image-pefect
+{
+    max-width:80%;
+    max-height:80%;
+}
