@@ -5,7 +5,6 @@
 
 import Entity.*;
 import Service.*;
-import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile;
 
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
@@ -35,6 +34,13 @@ public class DatabaseManager {
         }
         else
             System.out.println("\n\nDatabase already configured!\n");
+
+        TriggerForEveryUse("ba519b2b", "Explorer", "Linux", "Haiti");
+        TriggerForEveryUse("a7dc8cf8", "Chrome", "Windows", "Haiti");
+        TriggerForEveryUse("cffe0905", "Opera", "Mac OS", "China");
+        TriggerForEveryUse("ba519b2b", "Safari", "Mac OS", "France");
+        TriggerForEveryUse("cffe0905", "Mozzila", "Linux", "Cuba");
+        TriggerForEveryUse("cffe0905", "Mozzila", "Linux", "South Africa");
 
     }
 
@@ -288,6 +294,7 @@ public class DatabaseManager {
     }
 
     // Data Related Functions
+    // To be used everytime a user uses a shortURL
     public static void TriggerForEveryUse(String shortURL, String browser, String OS, String country){
 
         if(CompileInfoLogData(shortURL, browser, OS, country))
