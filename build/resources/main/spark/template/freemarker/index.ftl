@@ -19,7 +19,11 @@
                     <div class="mdl-card__supporting-text">
                         <form action="#">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+<<<<<<< HEAD
                                 <input class="mdl-textfield__input" type="text" id="sample3" required/>
+=======
+                                <input class="mdl-textfield__input" type="text" id="sample3">
+>>>>>>> a954c0b62dd627645f7e295aa6bf15691be75ed4
                                 <label class="mdl-textfield__label" for="sample3">URL Here...</label>
                             </div>
                         </form>
