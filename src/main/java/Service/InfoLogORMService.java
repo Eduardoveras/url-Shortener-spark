@@ -7,13 +7,13 @@ import Entity.InfoLog;
 
 public class InfoLogORMService extends GenericORMService<InfoLog>{
 
-    private InfoLogORMService instance;
+    private static InfoLogORMService instance;
 
     private InfoLogORMService(){
         super(InfoLog.class);
     }
 
-    public InfoLogORMService GetInstance(){
+    public static InfoLogORMService GetInstance(){
 
         if(instance == null)
             instance = new InfoLogORMService();

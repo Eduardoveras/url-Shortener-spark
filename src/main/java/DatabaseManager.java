@@ -96,6 +96,69 @@ public class DatabaseManager {
             System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
     }
 
+    private static List<InfoLog> FetchAllData(){
+        return InfoLogORMService.GetInstance().FindAll();
+    }
+
+    private static boolean IsDataIncluded(String data, ArrayList<String> dataList){
+
+        if(dataList.size() == 0)
+            return false;
+
+        for (String d:
+             dataList) {
+            if(data.equals(d))
+                return true;
+        }
+
+        return false;
+    }
+
+    // Exclusive to Admin
+    public static ArrayList<String> FetchAllCountries(){
+        ArrayList<String> countries = new ArrayList<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+             archives) {
+            if(!IsDataIncluded(data.getCountry(), countries))
+                countries.add(data.getCountry());
+        }
+
+        return countries;
+    }
+
+    // Exclusive to Admin
+    public static ArrayList<String> FetchAllBrowser(){
+        ArrayList<String> browsers = new ArrayList<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getBrowser(), browsers))
+                browsers.add(data.getBrowser());
+        }
+
+        return browsers;
+    }
+
+    // Exclusive to Admin
+    public static ArrayList<String> FetchAllOS(){
+        ArrayList<String> os = new ArrayList<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getOS(), os))
+                os.add(data.getOS());
+        }
+
+        return os;
+    }
+
     // Exclusive too Admin
     public static List<URL> FetchAllURL(){
 
@@ -192,4 +255,7 @@ public class DatabaseManager {
 
         return userURL;
     }
+
+    // Data Related Functions
+    
 }
