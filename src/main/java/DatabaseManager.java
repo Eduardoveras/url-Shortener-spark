@@ -81,6 +81,10 @@ public class DatabaseManager {
             System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
     }
 
+    public static void FetchAllURL(){
+
+    }
+
     // Exclusive to Admin
     public static List<User> FetchAllUsers(){
 
@@ -115,4 +119,20 @@ public class DatabaseManager {
 
     // TODO: Add change user password function
 
+    // URL Related Functions
+    public static void CreateNewShortURL(){
+
+    }
+
+    public static void DeleteShortURL(){
+
+    }
+
+    public static void FetchOriginalURL(){
+        
+    }
+
+    public static void FetchAllURLForUser(){
+
+    }
 }

@@ -27,6 +27,8 @@ public class DateLog implements Serializable {
     @ManyToOne
     private URL url;
 
+    // TODO: Add new columns for browser, country, etc
+
     // Constructors
     public DateLog(){
 
