@@ -132,8 +132,16 @@ public class DatabaseManager {
         }
     }
 
-    public static void DeleteShortURL(){
+    public static boolean DeleteShortURL(String shortURL){
 
+        try{
+
+            URLORMService.GetInstance().Delete(URLORMService.GetInstance().Find(shortURL));
+            return true;
+        } catch (Exception exp){
+            System.out.println("\n\nThis short url does not exist\n");
+            return false;
+        }
     }
 
     public static void FetchOriginalURL(){
