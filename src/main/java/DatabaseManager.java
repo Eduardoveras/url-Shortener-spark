@@ -63,6 +63,20 @@ public class DatabaseManager {
             return user.isAdmin();
     }
 
+    private static boolean CheckUserURLEntry(String originalURL, String username){
+
+        List<URL> urls = FetchAllURLForUser(username);
+
+        for (URL url:
+             urls) {
+            if(url.getOriginalURL().equals(originalURL))
+                return true;
+        }
+
+        System.out.println("\n\nThis URL has not yet been registered by " + username);
+        return false;
+    }
+
     // Exclusive to Admin
     public static void MakeAdmin(String username){
 
@@ -82,6 +96,7 @@ public class DatabaseManager {
             System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
     }
 
+    // Exclusive too Admin
     public static List<URL> FetchAllURL(){
 
         return URLORMService.GetInstance().FindAll();
@@ -125,6 +140,11 @@ public class DatabaseManager {
     public static boolean CreateNewShortURL(String original, String username){
 
         try{
+
+            if(CheckUserURLEntry(original, username)){
+                System.out.println("\n\nThis URL has already been registered by " + username);
+                return false;
+            }
 
             URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username)));
             return true;
