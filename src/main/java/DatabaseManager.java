@@ -35,13 +35,13 @@ public class DatabaseManager {
         else
             System.out.println("\n\nDatabase already configured!\n");
 
-        TriggerForEveryUse("ba519b2b", "Explorer", "Linux", "Haiti");
-        TriggerForEveryUse("a7dc8cf8", "Chrome", "Windows", "Haiti");
-        TriggerForEveryUse("cffe0905", "Opera", "Mac OS", "China");
-        TriggerForEveryUse("ba519b2b", "Safari", "Mac OS", "France");
-        TriggerForEveryUse("cffe0905", "Mozzila", "Linux", "Cuba");
-        TriggerForEveryUse("cffe0905", "Mozzila", "Linux", "South Africa");
 
+        ArrayList<String> countries = FetchAllCountries();
+
+        for (String country:
+             countries) {
+            System.out.println(country);
+        }
     }
 
     /*
@@ -163,19 +163,6 @@ public class DatabaseManager {
         return browsers;
     }
 
-    private static String FetchShortURL(String originalURL, String username){
-
-        List<URL> urls = FetchAllURL();
-
-        for (URL url:
-             urls) {
-            if(url.getOriginalURL().equals(originalURL) && url.getUser().getUsername().equals(username))
-                return url.getShortURL();
-        }
-
-        return null;
-    }
-
     // Exclusive to Admin
     public static ArrayList<String> FetchAllOS(){
         ArrayList<String> os = new ArrayList<>();
@@ -189,6 +176,19 @@ public class DatabaseManager {
         }
 
         return os;
+    }
+
+    private static String FetchShortURL(String originalURL, String username){
+
+        List<URL> urls = FetchAllURL();
+
+        for (URL url:
+                urls) {
+            if(url.getOriginalURL().equals(originalURL) && url.getUser().getUsername().equals(username))
+                return url.getShortURL();
+        }
+
+        return null;
     }
 
     // Exclusive too Admin
