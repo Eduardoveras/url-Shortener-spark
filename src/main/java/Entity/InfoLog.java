@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class DateLog implements Serializable {
+public class InfoLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,13 +28,23 @@ public class DateLog implements Serializable {
     private URL url;
 
     // TODO: Add new columns for browser, country, etc
+    @Column(name = "BROWSER", nullable = false)
+    private String browser;
+
+    @Column(name = "OS", nullable = false)
+    private String OS;
+
+    @Column(name = "COUNTRY", nullable = false)
+    private String country;
+
+
 
     // Constructors
-    public DateLog(){
+    public InfoLog(){
 
     }
 
-    public DateLog(URL url){
+    public InfoLog(URL url){
 
         this.setUrl(url);
 
@@ -43,7 +53,19 @@ public class DateLog implements Serializable {
 
     }
 
-    public DateLog(Integer id, URL url){
+    public InfoLog(URL url, String browser, String OS, String country){
+
+        this.setUrl(url);
+
+        java.util.Date utilDate = new java.util.Date();
+        this.setDate(new Date(utilDate.getTime()));
+
+        this.setBrowser(browser);
+        this.setOS(OS);
+        this.setCountry(country);
+    }
+
+    public InfoLog(Integer id, URL url, String browser, String OS, String country){
 
         this.setId(id);
         this.setUrl(url);
@@ -51,6 +73,9 @@ public class DateLog implements Serializable {
         java.util.Date utilDate = new java.util.Date();
         this.setDate(new Date(utilDate.getTime()));
 
+        this.setBrowser(browser);
+        this.setOS(OS);
+        this.setCountry(country);
     }
 
     // Getters & Setters
@@ -76,5 +101,29 @@ public class DateLog implements Serializable {
 
     public void setUrl(URL url) {
         this.url = url;
+    }
+
+    public String getBrowser() {
+        return browser;
+    }
+
+    public void setBrowser(String browser) {
+        this.browser = browser;
+    }
+
+    public String getOS() {
+        return OS;
+    }
+
+    public void setOS(String OS) {
+        this.OS = OS;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
