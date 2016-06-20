@@ -36,7 +36,7 @@ public class DatabaseManager {
             System.out.println("\n\nDatabase already configured!\n");
 
 
-        ArrayList<String> countries = FetchAllCountries();
+        ArrayList<String> countries = FetchAllBrowser();
 
         for (String country:
              countries) {
