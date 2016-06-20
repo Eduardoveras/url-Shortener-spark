@@ -7,8 +7,7 @@ import Entity.*;
 import Service.*;
 
 import javax.persistence.PersistenceException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DatabaseManager {
 
@@ -77,6 +76,18 @@ public class DatabaseManager {
         return false;
     }
 
+    private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country){
+
+        try{
+
+            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
+            return true;
+        } catch (Exception exp){
+            System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
+            return false;
+        }
+    }
+
     // Exclusive to Admin
     public static void MakeAdmin(String username){
 
@@ -114,8 +125,7 @@ public class DatabaseManager {
         return false;
     }
 
-    // Exclusive to Admin
-    public static ArrayList<String> FetchAllCountries(){
+    private static ArrayList<String> FetchAllCountries(){
         ArrayList<String> countries = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -130,7 +140,29 @@ public class DatabaseManager {
     }
 
     // Exclusive to Admin
-    public static ArrayList<String> FetchAllBrowser(){
+    public static Map<String, Integer> FetchAllCountryData(){
+        ArrayList<String> log = new ArrayList<>();
+        Map<String, Integer> countries = new HashMap<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getCountry(), log)){
+                log.add(data.getCountry());
+                countries.put(data.getCountry(), 1);
+            }
+            else{
+                Integer bubble = countries.remove(data.getCountry());
+
+                countries.put(data.getCountry(), bubble + 1);
+            }
+        }
+
+        return countries;
+    }
+
+    private static ArrayList<String> FetchAllBrowser(){
         ArrayList<String> browsers = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -145,7 +177,29 @@ public class DatabaseManager {
     }
 
     // Exclusive to Admin
-    public static ArrayList<String> FetchAllOS(){
+    public static Map<String, Integer> FetchAllBrowserData(){
+        ArrayList<String> log = new ArrayList<>();
+        Map<String, Integer> browsers = new HashMap<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getBrowser(), log)){
+                log.add(data.getBrowser());
+                browsers.put(data.getBrowser(), 1);
+            }
+            else{
+                Integer bubble = browsers.remove(data.getBrowser());
+
+                browsers.put(data.getBrowser(), bubble + 1);
+            }
+        }
+
+        return browsers;
+    }
+
+    private static ArrayList<String> FetchAllOS(){
         ArrayList<String> os = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -157,6 +211,42 @@ public class DatabaseManager {
         }
 
         return os;
+    }
+
+    // Exclusive to Admin
+    public static Map<String, Integer> FetchAllOSData(){
+        ArrayList<String> log = new ArrayList<>();
+        Map<String, Integer> OS = new HashMap<>();
+
+        List<InfoLog> archives = FetchAllData();
+
+        for (InfoLog data:
+                archives) {
+            if(!IsDataIncluded(data.getOS(), log)){
+                log.add(data.getOS());
+                OS.put(data.getOS(), 1);
+            }
+            else{
+                Integer bubble = OS.remove(data.getOS());
+
+                OS.put(data.getOS(), bubble + 1);
+            }
+        }
+
+        return OS;
+    }
+
+    private static String FetchShortURL(String originalURL, String username){
+
+        List<URL> urls = FetchAllURL();
+
+        for (URL url:
+                urls) {
+            if(url.getOriginalURL().equals(originalURL) && url.getUser().getUsername().equals(username))
+                return url.getShortURL();
+        }
+
+        return null;
     }
 
     // Exclusive too Admin
@@ -200,7 +290,7 @@ public class DatabaseManager {
     // TODO: Add change user password function
 
     // URL Related Functions
-    public static boolean CreateNewShortURL(String original, String username){
+    public static boolean CreateNewShortURL(String original, String username, String browser, String OS, String country){
 
         try{
 
@@ -210,10 +300,15 @@ public class DatabaseManager {
             }
 
             URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username)));
-            return true;
+
         } catch (PersistenceException exp){
             System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");
             return false;
+        } finally{
+
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, country))
+                System.out.println("\n\nInfoLog Updated Successfully!\n");
+            return true;
         }
     }
 
@@ -257,14 +352,11 @@ public class DatabaseManager {
     }
 
     // Data Related Functions
-    public static void CompileInfoLogData(String shortURL, String browser, String OS, String country){
+    // To be used everytime a user uses a shortURL
+    public static void TriggerForEveryUse(String shortURL, String browser, String OS, String country){
 
-        try{
+        if(CompileInfoLogData(shortURL, browser, OS, country))
+            System.out.println("\n\nInfoLog Updated Successfully!\n");
 
-            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
-
-        } catch (Exception exp){
-            System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
-        }
     }
 }
