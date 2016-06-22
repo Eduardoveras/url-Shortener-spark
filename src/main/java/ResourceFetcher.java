@@ -14,4 +14,10 @@ public class ResourceFetcher {
             return "TheUrl";
     }
 
+    public static String getContry(String ip) {
+        return "Country";
+    }
+
+
+
 }
