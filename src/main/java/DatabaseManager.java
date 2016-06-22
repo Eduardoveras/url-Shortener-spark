@@ -271,6 +271,11 @@ public class DatabaseManager {
         return UserORMService.GetInstance().FindAll();
     }
 
+    public static User FetchUser(String username){
+
+        return UserORMService.GetInstance().Find(username);
+    }
+
     // User Related Functions
     public static boolean CreateNewUser(String username, String firstName, String lastName, String password){
 
