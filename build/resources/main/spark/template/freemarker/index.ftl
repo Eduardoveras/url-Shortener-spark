@@ -13,22 +13,22 @@
         <div class="mdl-grid demo-content">
             <div class="mdl-cell mdl-cell--8-col">
                 <div class="full-width-card mdl-card mdl-shadow--2dp">
+                    <form action="" METHOD="POST">
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">Welcome to URL Short</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <form action="#">
+
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3">
+                                <input class="mdl-textfield__input" type="text" id="URL" name="URL">
                                 <label class="mdl-textfield__label" for="sample3">URL Here...</label>
                             </div>
-                        </form>
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                            MAKE SHORT
-                        </button>
+                        <input type="hidden" name="username" id="username" value="TheUserName">
+                        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="MAKE SHORT">
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

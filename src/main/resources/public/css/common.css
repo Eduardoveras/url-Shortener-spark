@@ -74,45 +74,6 @@ html, body {
     max-width: 1080px;
 }
 
-.demo-charts {
-    align-items: center;
-}
-.demo-chart:nth-child(1) {
-    color: #ACEC00;
-}
-.demo-chart:nth-child(2) {
-    color: #00BBD6;
-}
-.demo-chart:nth-child(3) {
-    color: #BA65C9;
-}
-.demo-chart:nth-child(4) {
-    color: #EF3C79;
-}
-.demo-graphs {
-    padding: 16px 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-/* TODO: Find a proper solution to have the graphs
- * not float around outside their container in IE10/11.
- * Using a browserhacks.com solution for now.
- */
-_:-ms-input-placeholder, :root .demo-graphs {
-    min-height: 664px;
-}
-_:-ms-input-placeholder, :root .demo-graph {
-    max-height: 300px;
-}
-/* TODO end */
-.demo-graph:nth-child(1) {
-    color: #00b9d8;
-}
-.demo-graph:nth-child(2) {
-    color: #d9006e;
-}
-
 .demo-cards {
     align-items: flex-start;
     align-content: flex-start;
