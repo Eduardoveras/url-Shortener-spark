@@ -5,8 +5,10 @@
 
 import Entity.*;
 import Service.*;
+import org.h2.tools.Server;
 
 import javax.persistence.PersistenceException;
+import java.sql.SQLException;
 import java.util.*;
 
 public class DatabaseManager {
@@ -17,6 +19,14 @@ public class DatabaseManager {
     }
 
     public static void BootDataBase(){
+
+        Server server = null;
+        try {
+            server = Server.createTcpServer("-tcpAllowOthers").start();
+        } catch (SQLException e) {
+            System.out.println("FAILED TO START SERVER, CLOSE H2 IF YOU HAVE IT OPENED");
+            e.printStackTrace();
+        }
 
         List<User> users = FetchAllUsers();
 
