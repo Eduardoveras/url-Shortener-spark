@@ -36,4 +36,6 @@
     <link rel="stylesheet" href="css/common.css">
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
 </head>
