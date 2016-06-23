@@ -140,3 +140,8 @@ html, body {
     width: 55%;
     margin: 0 auto;
 }
+
+/*Separacion para el recaptcha*/
+.g-recaptcha {
+    margin-bottom: 21px;
+}
