@@ -42,8 +42,23 @@ public class DatabaseManager {
             System.out.println("Admins created successfully!\n");
         }
         else
-            System.out.println("\n\nDatabase already configured!\n");
+            System.out.println("\n\nUser Database already configured!\n");
 
+        List<URL> urls = FetchAllURL();
+
+        if(urls.size() == 0)
+        {
+            System.out.println("Registering admin urls");
+
+            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin")));
+            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin")));
+            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin")));
+            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin")));
+
+            System.out.println("Success!");
+        }
+        else
+            System.out.println("\nURL Database already configured!\n");
     }
 
     /*
