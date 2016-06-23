@@ -25,6 +25,7 @@
                             </div>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
+                            <div class="g-recaptcha" data-sitekey="6Le7WCMTAAAAAFGqChVDfyU4lrF2N-ETD54H4WQa"></div>
                             <input type="hidden" name="username" id="username" value="TheUserName">
                             <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                                    type="submit" value="MAKE SHORT">
