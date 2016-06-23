@@ -134,3 +134,9 @@ html, body {
     max-width:80%;
     max-height:80%;
 }
+
+.full-centered
+{
+    width: 55%;
+    margin: 0 auto;
+}
