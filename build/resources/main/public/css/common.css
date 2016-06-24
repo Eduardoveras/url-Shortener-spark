@@ -141,7 +141,24 @@ html, body {
     margin: 0 auto;
 }
 
+<<<<<<< HEAD
 /*Separacion para el recaptcha*/
 .g-recaptcha {
     margin-bottom: 21px;
+=======
+
+/*Separacion para el recaptcha*/
+.g-recaptcha {
+    margin-bottom: 21px;
+
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('http://3.bp.blogspot.com/-uuy4oHM8YNU/VelHUJMDJMI/AAAAAAACEzc/A0zvTppv8uE/s320/g-dots.gif') 50% 50% no-repeat rgb(255,255,255);
+>>>>>>> c0a512c8d588dc45cd1ce882432304c145079ebc
 }

@@ -52,17 +52,8 @@ public class pageCreator {
             attributes.put("message", "Welcome");
             attributes.put("pagename","Home");
             attributes.put("user",current_username);
-            //System.out.println("LLEGO");
-            //ArrayList<URL> urls = DatabaseManager.FetchAllURLForUser(current_username);
-            //System.out.println("LLEGO");
-            /*for (URL ux :urls)
-            {
-                System.out.println("YOLOXXX");
-            }
-            System.out.println("LLEGO");
-            attributes.put("urls",urls);*/
-
-
+            ArrayList<URL> urls = DatabaseManager.FetchAllURLForUser(current_username);
+            attributes.put("urls",urls);
 
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());
@@ -98,10 +89,9 @@ public class pageCreator {
 
 
         post("/", (request, response) -> {
-
             String URL = request.queryParams("URL");
             String username = request.queryParams("username");
-            //DatabaseManager.CreateNewShortURL(URL,username,request.userAgent(),request.userAgent(),"Dominican Republic");
+            DatabaseManager.CreateNewShortURL(URL,username,request.userAgent(),request.userAgent(),"Dominican Republic");
 
             return username;
         });

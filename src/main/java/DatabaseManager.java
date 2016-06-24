@@ -59,6 +59,13 @@ public class DatabaseManager {
         }
         else
             System.out.println("\nURL Database already configured!\n");
+
+        urls = FetchAllURLForUser("admin");
+
+        for (URL u:
+             urls) {
+            System.out.println(u.getShortURL() + " " + u.getUser().getUsername());
+        }
     }
 
     /*
@@ -370,13 +377,29 @@ public class DatabaseManager {
 
         ArrayList<URL> userURL = new ArrayList<>();
 
-        List<URL> urls = URLORMService.GetInstance().FindAll();
 
-        for (URL url:
-             urls) {
-            if(url.getUser().getUsername().equals(UserORMService.GetInstance().Find(username).getUsername()))
-                userURL.add(url);
+        List<URL> urls = URLORMService.GetInstance().FindAll();
+        if (!urls.isEmpty())
+        {
+
+            for (URL url: urls) {
+                System.out.println("antexxx");
+
+                //THIS PART IS FAILING
+                String datauser = UserORMService.GetInstance().Find(username).getUsername();
+                System.out.println("THE USER ISSSSSSSSSSS:  "+datauser);
+
+
+                if(url.getUser().getUsername().equals(datauser))
+                {
+                    System.out.println("adentro");
+                    userURL.add(url);
+                }
+                System.out.println("depue");
+
+            }
         }
+
 
         return userURL;
     }
