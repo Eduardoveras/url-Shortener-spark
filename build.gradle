@@ -65,6 +65,12 @@ dependencies {
 
     //Google api
     compile 'com.google.api-client:google-api-client:1.19.1'
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
+
+    //Json
+    compile group: 'org.json', name: 'json', version: '20090211'
 }
 
 defaultTasks = ['clean']

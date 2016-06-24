@@ -1,4 +1,5 @@
 
+
 public class ResourceFetcher {
 
     public static String getDescription(String url) {
@@ -14,10 +15,28 @@ public class ResourceFetcher {
             return "TheUrl";
     }
 
-    public static String getContry(String ip) {
+    public static String url_ip(String ip) {
 
         String Country = "http://api.db-ip.com/v2/7496a2baeeff5630344751043641127d7b0cf062/" + ip;
-        return "Country";
+        return "url_ip";
+
+    public static String getcontry(String url_ip){
+
+        URL url = new  URL(url_ip);
+        try (InputStream is = url.openStream();
+             JsonReader rdr = Json.createReader(is)) {
+            JsonObject obj = rdr.readObject();
+            JsonArray results = obj.getJsonArray("data");
+            for (JsonObject result : results.getValuesAs(JsonObject.class)) {
+                System.out.print(result.getJsonObject("from").getString("name"));
+                System.out.print(": ");
+                System.out.println(result.getString("message", ""));
+                System.out.println("-----------");
+            }
+        }
+
+
+
     }
 
 
