@@ -38,6 +38,7 @@ public class DatabaseManager {
             UserORMService.GetInstance().Create(new User("Wardo", "Eduardo", "Veras", "1234", true));
             UserORMService.GetInstance().Create(new User("EmmJ", "Emmanuel", "Jaquez", "1234", true));
             UserORMService.GetInstance().Create(new User("Djsiclait", "Djidjelly", "Siclait", "1234", true));
+            UserORMService.GetInstance().Create(new User("guest", "guest", "guest", "", false));
 
             System.out.println("Admins created successfully!\n");
         }
@@ -59,13 +60,6 @@ public class DatabaseManager {
         }
         else
             System.out.println("\nURL Database already configured!\n");
-
-        urls = FetchAllURLForUser("admin");
-
-        for (URL u:
-             urls) {
-            System.out.println(u.getShortURL() + " " + u.getUser().getUsername());
-        }
     }
 
     /*

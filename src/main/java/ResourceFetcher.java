@@ -1,4 +1,7 @@
+import Entity.URL;
+import com.google.api.client.json.Json;
 
+import java.io.InputStream;
 
 public class ResourceFetcher {
 
@@ -19,7 +22,8 @@ public class ResourceFetcher {
 
         String Country = "http://api.db-ip.com/v2/7496a2baeeff5630344751043641127d7b0cf062/" + ip;
         return "url_ip";
-
+    }
+/*
     public static String getcontry(String url_ip){
 
         URL url = new  URL(url_ip);
@@ -35,10 +39,6 @@ public class ResourceFetcher {
             }
         }
 
-
-
-    }
-
-
+*/
 
 }
