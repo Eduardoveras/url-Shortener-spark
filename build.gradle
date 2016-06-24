@@ -19,7 +19,7 @@ defaultTasks = ['clean', 'jar']
 
 jar {
     manifest {
-        attributes 'Main-Class': 'hello.MainServer'
+        attributes 'Main-Class': 'Main'
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } {
         // remove all signature files
