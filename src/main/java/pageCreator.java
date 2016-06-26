@@ -80,7 +80,16 @@ public class pageCreator {
 
 
 
+        get("*", (req, res) ->{
 
+            if(!req.pathInfo().startsWith("/static")){
+                res.status(404);
+                Map<String, Object> attributes = new HashMap<>();
+                return new ModelAndView(attributes, "404.ftl");
+            }
+
+            return null;
+        }, new FreeMarkerEngine());
 
     }
 
