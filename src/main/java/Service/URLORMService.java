@@ -5,10 +5,6 @@ package Service;
 
 import Entity.URL;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.util.List;
-
 public class URLORMService extends GenericORMService<URL>{
 
     private static URLORMService instance;
