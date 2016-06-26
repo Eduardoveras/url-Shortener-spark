@@ -72,6 +72,13 @@ public class pageCreator {
             return new ModelAndView(attributes, "login.ftl");
         }, new FreeMarkerEngine());
 
+        get("/instructions", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",current_username);
+            attributes.put("pagename","Instructions");
+            return new ModelAndView(attributes, "instructions.ftl");
+        }, new FreeMarkerEngine());
+
 
         get("/logout", (req, res) -> {
             req.session().invalidate();
