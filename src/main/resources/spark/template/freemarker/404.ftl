@@ -1,12 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Opps! 404 Error</title>
-</head>
-<body>
-<div>
-    <h3>Opps! This is a <strong>404 error</strong>.</h3>
-    <p>We can't seem to find the page you are looking for!</p>
+<#include "/header.ftl">
+<style>
+    .demo-card-wide.mdl-card {
+        width: 512px;
+    }
+    .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 176px;
+        background: url('https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/404-not-found-error-page-examples.png') center / cover;
+    }
+    .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+    }
+</style>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:25%; margin:0 auto;">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">We are sorry...</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        This should not have happende,maybe you were doing something you are not supposed to? lets direct you back in the way of the force
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a href="/" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Return to the Jedi path
+        </a>
+    </div>
+
 </div>
-</body>
-</html>

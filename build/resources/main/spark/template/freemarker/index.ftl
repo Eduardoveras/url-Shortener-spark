@@ -27,7 +27,9 @@
                             </div>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
+                            <#if user == "guest">
                             <div class="g-recaptcha" data-sitekey="6Le7WCMTAAAAAFGqChVDfyU4lrF2N-ETD54H4WQa"></div>
+                            </#if>
                             <input type="hidden" name="username" id="username" value="${user}">
                             <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                                    type="submit" value="MAKE SHORT">
@@ -46,11 +48,10 @@
                         <img class="image-pefect" src="/media/test/website.png"/>
                     </div>
                     <div class="mdl-card__title mdl-card--expand">
-                        <h2 class="mdl-card__title-text">${url.getOriginalURL()}</h2>
+                        <a href="http://${url.getOriginalURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Mauris sagittis pellentesque lacus eleifend lacinia...
+                    Directs to: ${url.getOriginalURL()}
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">

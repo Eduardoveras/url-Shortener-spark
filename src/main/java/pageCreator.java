@@ -58,7 +58,13 @@ public class pageCreator {
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());
 
-
+        get("/register", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",current_username);
+            attributes.put("pagename","Register");
+            attributes.put("message", "Welcome");
+            return new ModelAndView(attributes, "login.ftl");
+        }, new FreeMarkerEngine());
 
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -68,6 +74,12 @@ public class pageCreator {
             return new ModelAndView(attributes, "login.ftl");
         }, new FreeMarkerEngine());
 
+        get("/logout", (req, res) -> {
+            req.session().invalidate();
+            res.redirect("/");
+
+            return "<h1>You have bee logged out</h1>";
+        }  );
 
 
         get("/p/:urlid", (request, response) -> {
@@ -75,7 +87,15 @@ public class pageCreator {
             attributes.put("pagename","URL Page");
             attributes.put("message", "Welcome");
             attributes.put("user",current_username);
-            return new ModelAndView(attributes, "index.ftl");
+            String urlid =request.params(":urlid");
+            System.out.println("THE PARAM IS:" + urlid);
+            String originalURL = DatabaseManager.FetchOriginalURL(urlid);
+            System.out.println("THE URL IS:" + originalURL);
+            if(originalURL != null && !originalURL.isEmpty())
+            {
+                response.redirect("http://"+originalURL);
+            }
+            return new ModelAndView(attributes, "404.ftl");
         }, new FreeMarkerEngine());
 
 
@@ -90,6 +110,8 @@ public class pageCreator {
 
             return null;
         }, new FreeMarkerEngine());
+
+
 
     }
 
@@ -115,13 +137,14 @@ public class pageCreator {
                 System.out.println("Logged in as: "+username);
                 System.out.println("With the password: "+pass);
                 request.session().attribute("user",username);
-
+                response.redirect("/");
             }
             else
             {
                 System.out.println("Loggin Failed, check user and password");
+                response.redirect("/login");
             }
-            //DatabaseManager.CreateNewShortURL(URL,username,request.userAgent(),request.userAgent(),"Dominican Republic");
+
 
             return username;
         });
