@@ -5,11 +5,13 @@
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Year', 'Sales', 'Expenses'],
-            ['2004',  1000,      400],
-            ['2005',  1170,      460],
-            ['2006',  660,       1120],
-            ['2007',  1030,      540]
+            ['Year', 'Sales'],
+        <#list accDates as item>
+            ['2004',  new Date(${item?string["yyyy,MM,dd"]})],
+        </#list>
+            ['2005',  new Date(2000, 8, 5)],
+            ['2006',  new Date(2000, 10, 5)],
+            ['2007',  new Date(2000, 12, 5)]
         ]);
 
         var options = {
