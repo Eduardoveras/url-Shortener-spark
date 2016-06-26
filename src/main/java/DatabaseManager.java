@@ -61,7 +61,7 @@ public class DatabaseManager {
         }
         else
             System.out.println("\nURL Database already configured!\n");
-
+/*
         Map<Date, Integer> data = FetchURLDataByDate("cffe0905");
 
         Set<Date> legend = ShowDateMapLegend(data);
@@ -70,6 +70,7 @@ public class DatabaseManager {
              legend) {
             System.out.println(key.toString() + " " + data.get(key));
         }
+        */
     }
 
     /*
@@ -112,11 +113,11 @@ public class DatabaseManager {
         return false;
     }
 
-    private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country){
+    private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country, String previewURL){
 
         try{
 
-            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
+            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country, previewURL));
             return true;
         } catch (Exception exp){
             System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
@@ -341,7 +342,7 @@ public class DatabaseManager {
     // TODO: Add change user password function
 
     // URL Related Functions
-    public static boolean CreateNewShortURL(String original, String username, String browser, String OS, String country){
+    public static boolean CreateNewShortURL(String original, String username, String browser, String OS, String ip){
 
         try{
 
@@ -357,7 +358,7 @@ public class DatabaseManager {
             return false;
         } finally{
 
-            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, country))
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, ResourceFetcher.getCountryFromIP(ip), ResourceFetcher.getDescription(original)))
                 System.out.println("\n\nInfoLog Updated Successfully!\n");
             return true;
         }
@@ -391,38 +392,25 @@ public class DatabaseManager {
 
         ArrayList<URL> userURL = new ArrayList<>();
 
-
         List<URL> urls = URLORMService.GetInstance().FindAll();
         if (!urls.isEmpty())
         {
-
             for (URL url: urls) {
-                System.out.println("antexxx");
-
-                //THIS PART IS FAILING
                 String datauser = UserORMService.GetInstance().Find(username).getUsername();
-                System.out.println("THE USER ISSSSSSSSSSS:  "+datauser);
-
 
                 if(url.getUser().getUsername().equals(datauser))
-                {
-                    System.out.println("adentro");
                     userURL.add(url);
-                }
-                System.out.println("depue");
-
             }
         }
-
 
         return userURL;
     }
 
     // Data Related Functions
     // To be used everytime a user uses a shortURL
-    public static void TriggerForEveryUse(String shortURL, String browser, String OS, String country){
+    public static void TriggerForEveryUse(String shortURL, String browser, String OS, String ip){
 
-        if(CompileInfoLogData(shortURL, browser, OS, country))
+        if(CompileInfoLogData(shortURL, browser, OS, ResourceFetcher.getCountryFromIP(ip), ResourceFetcher.getDescription(FetchOriginalURL(shortURL))))
             System.out.println("\n\nInfoLog Updated Successfully!\n");
 
     }
