@@ -4,10 +4,7 @@ import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.before;
 import static spark.Spark.get;
@@ -66,6 +63,7 @@ public class pageCreator {
             return new ModelAndView(attributes, "register.ftl");
         }, new FreeMarkerEngine());
 
+
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("user",current_username);
@@ -74,12 +72,22 @@ public class pageCreator {
             return new ModelAndView(attributes, "login.ftl");
         }, new FreeMarkerEngine());
 
+
         get("/logout", (req, res) -> {
             req.session().invalidate();
             res.redirect("/");
 
             return "<h1>You have bee logged out</h1>";
         }  );
+
+        get("/users", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",current_username);
+            attributes.put("pagename","Users Management");
+            List<User> userList= DatabaseManager.FetchAllUsers();
+            attributes.put("userList",userList);
+            return new ModelAndView(attributes, "usersview.ftl");
+        }, new FreeMarkerEngine());
 
 
         get("/p/:urlid", (request, response) -> {

@@ -156,3 +156,9 @@ html, body {
     z-index: 9999;
     background: url('http://3.bp.blogspot.com/-uuy4oHM8YNU/VelHUJMDJMI/AAAAAAACEzc/A0zvTppv8uE/s320/g-dots.gif') 50% 50% no-repeat rgb(255,255,255);
 }
+
+.custom-table
+{
+    margin: 0 auto;
+    top: 50px;
+}
