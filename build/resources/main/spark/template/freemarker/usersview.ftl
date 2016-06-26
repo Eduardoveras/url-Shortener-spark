@@ -30,14 +30,17 @@
                 <td class="mdl-data-table__cell--non-numeric">${user.getPassword()}</td>
                 <td class="mdl-data-table__cell--non-numeric">${user.isAdmin()?string('yes', 'no')}</td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    <button class="mdl-button mdl-js-button">
+                    <form action="" METHOD="POST">
+                        <input type="hidden" name="username" id="username" value="${user.getUsername()}">
                         <#if user.isAdmin()>
-                            Revoke admin
+                            <input class="mdl-button mdl-js-button" type="submit" value="Revoke Admin">
                         <#else>
-                            Make Admin
+                            <input class="mdl-button mdl-js-button" type="submit" value="Make Admin">
                         </#if>
+                    </form>
 
-                    </button>
+
+
                 </td>
             </tr>
             <#else>

@@ -181,6 +181,13 @@ public class pageCreator {
             return username;
         });
 
+        post("/users", (request, response) -> {
+            String username = request.queryParams("username");
+            DatabaseManager.MakeAdmin(username);
+            response.redirect("/users");
+            return username;
+        });
+
     }
 
 
