@@ -4,7 +4,9 @@ import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 import static spark.Spark.before;
 import static spark.Spark.get;
@@ -96,10 +98,23 @@ public class pageCreator {
             return new ModelAndView(attributes, "usersview.ftl");
         }, new FreeMarkerEngine());
 
-        get("/stats", (request, response) -> {
+        get("/p/:urlid/stats", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
+            String urlid =request.params(":urlid");
+            attributes.put("urlid",urlid);
             attributes.put("user",current_username);
             attributes.put("pagename","Link Stats");
+
+            Map<java.sql.Date, Integer> data = DatabaseManager.FetchURLDataByDate(urlid);
+            Set<java.sql.Date> legend = DatabaseManager.ShowDateMapLegend(data);
+
+            for (java.sql.Date key: legend) {
+                System.out.println(key.toString() + " " + data.get(key));
+            }
+            attributes.put("accDates",legend);
+
+
+
             return new ModelAndView(attributes, "stats.ftl");
         }, new FreeMarkerEngine());
 
@@ -118,7 +133,7 @@ public class pageCreator {
                 if (!originalURL.toLowerCase().matches("^\\w+://.*")) {
                     originalURL = "http://" + originalURL;
                 }
-
+                DatabaseManager.TriggerForEveryUse(urlid,request.userAgent(),request.userAgent(),"Domincan Republic");
                 response.redirect(originalURL);
             }
             return new ModelAndView(attributes, "404.ftl");

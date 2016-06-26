@@ -66,8 +66,7 @@ public class DatabaseManager {
 
         Set<Date> legend = ShowDateMapLegend(data);
 
-        for (Date key:
-             legend) {
+        for (Date key: legend) {
             System.out.println(key.toString() + " " + data.get(key));
         }
         */
