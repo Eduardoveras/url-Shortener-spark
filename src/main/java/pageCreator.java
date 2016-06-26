@@ -72,6 +72,13 @@ public class pageCreator {
             return new ModelAndView(attributes, "login.ftl");
         }, new FreeMarkerEngine());
 
+        get("/instructions", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",current_username);
+            attributes.put("pagename","Instructions");
+            return new ModelAndView(attributes, "instructions.ftl");
+        }, new FreeMarkerEngine());
+
 
         get("/logout", (req, res) -> {
             req.session().invalidate();
@@ -89,6 +96,13 @@ public class pageCreator {
             return new ModelAndView(attributes, "usersview.ftl");
         }, new FreeMarkerEngine());
 
+        get("/stats", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",current_username);
+            attributes.put("pagename","Link Stats");
+            return new ModelAndView(attributes, "stats.ftl");
+        }, new FreeMarkerEngine());
+
 
         get("/p/:urlid", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -101,7 +115,11 @@ public class pageCreator {
             System.out.println("THE URL IS:" + originalURL);
             if(originalURL != null && !originalURL.isEmpty())
             {
-                response.redirect("http://"+originalURL);
+                if (!originalURL.toLowerCase().matches("^\\w+://.*")) {
+                    originalURL = "http://" + originalURL;
+                }
+
+                response.redirect(originalURL);
             }
             return new ModelAndView(attributes, "404.ftl");
         }, new FreeMarkerEngine());

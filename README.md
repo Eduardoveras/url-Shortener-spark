@@ -40,9 +40,9 @@ Describe and show how to run the tests with code examples.
 
 ## Contributors
 
-* ##### Eduardo Veras
-* ##### Djidjelly Siclait
-* ##### Emmanuel Jaquez
+* Eduardo Veras
+* Djidjelly Siclait
+* Emmanuel Jaquez
 
 ## License
 
