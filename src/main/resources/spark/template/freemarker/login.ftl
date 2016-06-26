@@ -13,8 +13,8 @@
 
         <!--LOGIN BOX-->
         <div class="mdl-grid demo-content">
-            <div class="full-centered mdl-cell mdl-cell--4-col">
-                <div class="full-width-card mdl-card mdl-shadow--2dp">
+            <div class="full-centered mdl-cell mdl-cell--6-col" style="width: 95%;">
+                <div class="full-width-card mdl-card mdl-shadow--2dp" >
                     <form action="" METHOD="POST">
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Welcome to URL Short</h2>
@@ -33,6 +33,9 @@
                                 <input class="mdl-textfield__input" type="password" id="password" name="password">
                                 <label class="mdl-textfield__label">password.</label>
                             </div>
+                            
+                            <div class="g-recaptcha" data-sitekey="6Le7WCMTAAAAAFGqChVDfyU4lrF2N-ETD54H4WQa"></div>
+
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
                             <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Login">
