@@ -162,3 +162,12 @@ html, body {
     margin: 0 auto;
     top: 50px;
 }
+table {
+    width: 95%;
+    height: auto;
+}
+
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}

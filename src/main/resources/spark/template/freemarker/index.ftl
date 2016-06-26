@@ -48,7 +48,7 @@
                         <img class="image-pefect" src="/media/test/website.png"/>
                     </div>
                     <div class="mdl-card__title mdl-card--expand">
-                        <a href="http://${url.getOriginalURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
+                        <a href="${url.getOriginalURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
                     </div>
                     <div class="mdl-card__supporting-text">
                     Directs to: ${url.getOriginalURL()}
