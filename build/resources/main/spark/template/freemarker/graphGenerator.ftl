@@ -7,11 +7,9 @@
         var data = google.visualization.arrayToDataTable([
             ['Year', 'Sales'],
         <#list accDates as item>
-            ['2004',  new Date(${item?string["yyyy,MM,dd"]})],
+            [${item}],
         </#list>
-            ['2005',  new Date(2000, 8, 5)],
-            ['2006',  new Date(2000, 10, 5)],
-            ['2007',  new Date(2000, 12, 5)]
+            [ '4', new Date(2016, 12, 5)]
         ]);
 
         var options = {

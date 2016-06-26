@@ -5,6 +5,8 @@ import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
@@ -107,11 +109,18 @@ public class pageCreator {
 
             Map<java.sql.Date, Integer> data = DatabaseManager.FetchURLDataByDate(urlid);
             Set<java.sql.Date> legend = DatabaseManager.ShowDateMapLegend(data);
-
+            DateFormat df = new SimpleDateFormat("yyyy,MM,dd");
+            ArrayList<String> arr = new ArrayList<String>();
             for (java.sql.Date key: legend) {
-                System.out.println(key.toString() + " " + data.get(key));
+
+                String theValue= "'" + data.get(key)+"',"+"new Date("+df.format(key) + ")";
+                System.out.println(theValue);
+                arr.add(theValue);
             }
-            attributes.put("accDates",legend);
+
+            attributes.put("accDates",arr);
+
+
 
 
 
