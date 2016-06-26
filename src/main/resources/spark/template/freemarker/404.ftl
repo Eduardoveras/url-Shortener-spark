@@ -15,10 +15,10 @@
 
 <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:25%; margin:0 auto;">
     <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">We are sorry...</h2>
+        <h2 class="mdl-card__title-text">Sorry, we are...</h2>
     </div>
     <div class="mdl-card__supporting-text">
-        This should not have happende,maybe you were doing something you are not supposed to? lets direct you back in the way of the force
+        This should not have happened, maybe you were doing something you were not supposed to? Lets direct you back in the way of the force
     </div>
     <div class="mdl-card__actions mdl-card--border">
         <a href="/" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
