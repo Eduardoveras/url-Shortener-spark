@@ -130,7 +130,17 @@ public class DatabaseManager {
             System.out.println("Admin created successfully!\n");
         }
         else
-            System.out.println("\n\nUser, " + username + ", is already an Administrator!\n");
+        {
+            System.out.println("\n\nRemoving admin ...");
+
+            User user = UserORMService.GetInstance().Find(username);
+
+            user.setAdmin(false);
+
+            UserORMService.GetInstance().Edit(user);
+
+            System.out.println("Admin powers removed successfully!\n");
+        }
     }
 
     private static List<InfoLog> FetchAllData(){

@@ -21,10 +21,21 @@
                         </div>
                     <#if user == "guest">
                         <div class="mdl-card__supporting-text">
-
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="username" name="username">
                                 <label class="mdl-textfield__label" >Username</label>
+                            </div>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="firstname" name="firstname">
+                                <label class="mdl-textfield__label" >First Name</label>
+                            </div>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="lastname" name="lastname">
+                                <label class="mdl-textfield__label" >Last Name</label>
                             </div>
                         </div>
                         <div class="mdl-card__supporting-text">
@@ -35,7 +46,7 @@
                             </div>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Login">
+                            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Register">
                         </div>
                     <#else>
                         <div class="mdl-card__supporting-text">

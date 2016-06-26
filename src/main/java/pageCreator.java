@@ -4,10 +4,7 @@ import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.before;
 import static spark.Spark.get;
@@ -63,8 +60,9 @@ public class pageCreator {
             attributes.put("user",current_username);
             attributes.put("pagename","Register");
             attributes.put("message", "Welcome");
-            return new ModelAndView(attributes, "login.ftl");
+            return new ModelAndView(attributes, "register.ftl");
         }, new FreeMarkerEngine());
+
 
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -74,12 +72,22 @@ public class pageCreator {
             return new ModelAndView(attributes, "login.ftl");
         }, new FreeMarkerEngine());
 
+
         get("/logout", (req, res) -> {
             req.session().invalidate();
             res.redirect("/");
 
             return "<h1>You have bee logged out</h1>";
         }  );
+
+        get("/users", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",current_username);
+            attributes.put("pagename","Users Management");
+            List<User> userList= DatabaseManager.FetchAllUsers();
+            attributes.put("userList",userList);
+            return new ModelAndView(attributes, "usersview.ftl");
+        }, new FreeMarkerEngine());
 
 
         get("/p/:urlid", (request, response) -> {
@@ -146,6 +154,37 @@ public class pageCreator {
             }
 
 
+            return username;
+        });
+
+
+
+        post("/register", (request, response) -> {
+
+            String username = request.queryParams("username");
+            String pass = request.queryParams("password");
+            String Name = request.queryParams("firstname");
+            String lastName = request.queryParams("lastname");
+            if (DatabaseManager.CheckUserCredentials(username))
+            {
+                System.out.println("The user "+username+" already exists, try again");
+                response.redirect("/register");
+            }
+            else
+            {
+                DatabaseManager.CreateNewUser(username,Name,lastName,pass);
+                request.session().attribute("user",username);
+                response.redirect("/");
+            }
+
+
+            return username;
+        });
+
+        post("/users", (request, response) -> {
+            String username = request.queryParams("username");
+            DatabaseManager.MakeAdmin(username);
+            response.redirect("/users");
             return username;
         });
 
