@@ -25,9 +25,6 @@ public class InfoLog implements Serializable {
     @ManyToOne
     private URL url;
 
-    @Column(name = "PREVIEWURL")
-    private String previewURL;
-
     // TODO: Add new columns for browser, country, etc
     @Column(name = "BROWSER", nullable = false)
     private String browser;
@@ -54,7 +51,7 @@ public class InfoLog implements Serializable {
 
     }
 
-    public InfoLog(URL url, String browser, String OS, String country, String previewURL){
+    public InfoLog(URL url, String browser, String OS, String country){
 
         this.setUrl(url);
 
@@ -64,10 +61,9 @@ public class InfoLog implements Serializable {
         this.setBrowser(browser);
         this.setOS(OS);
         this.setCountry(country);
-        this.setPreviewURL(previewURL);
     }
 
-    public InfoLog(Integer id, URL url, String browser, String OS, String country, String previewURL){
+    public InfoLog(Integer id, URL url, String browser, String OS, String country){
 
         this.setId(id);
         this.setUrl(url);
@@ -78,7 +74,6 @@ public class InfoLog implements Serializable {
         this.setBrowser(browser);
         this.setOS(OS);
         this.setCountry(country);
-        this.setPreviewURL(previewURL);
     }
 
     // Getters & Setters
@@ -130,11 +125,4 @@ public class InfoLog implements Serializable {
         this.country = country;
     }
 
-    public String getPreviewURL() {
-        return previewURL;
-    }
-
-    public void setPreviewURL(String previewURL) {
-        this.previewURL = previewURL;
-    }
 }

@@ -52,10 +52,10 @@ public class DatabaseManager {
         {
             System.out.println("Registering admin urls");
 
-            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin")));
-            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin")));
-            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin")));
-            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin")));
+            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), ResourceFetcher.getDescription("http://facebook.com")));
+            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), ResourceFetcher.getDescription("http://fb.com")));
+            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), ResourceFetcher.getDescription("http://youtube.com")));
+            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), ResourceFetcher.getDescription("http://wikipedia.com")));
 
             System.out.println("Success!");
         }
@@ -113,11 +113,11 @@ public class DatabaseManager {
         return false;
     }
 
-    private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country, String previewURL){
+    private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country){
 
         try{
 
-            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country, previewURL));
+            InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
             return true;
         } catch (Exception exp){
             System.out.println("\n\nERROR! --> Processing InfoLog error\n\n");
@@ -351,14 +351,14 @@ public class DatabaseManager {
                 return false;
             }
 
-            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username)));
+            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), ResourceFetcher.getDescription(original)));
 
         } catch (PersistenceException exp){
             System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");
             return false;
         } finally{
 
-            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, ResourceFetcher.getCountryFromIP(ip), ResourceFetcher.getDescription(original)))
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, ResourceFetcher.getCountryFromIP(ip)))
                 System.out.println("\n\nInfoLog Updated Successfully!\n");
             return true;
         }
@@ -410,7 +410,7 @@ public class DatabaseManager {
     // To be used everytime a user uses a shortURL
     public static void TriggerForEveryUse(String shortURL, String browser, String OS, String ip){
 
-        if(CompileInfoLogData(shortURL, browser, OS, ResourceFetcher.getCountryFromIP(ip), ResourceFetcher.getDescription(FetchOriginalURL(shortURL))))
+        if(CompileInfoLogData(shortURL, browser, OS, ResourceFetcher.getCountryFromIP(ip)))
             System.out.println("\n\nInfoLog Updated Successfully!\n");
 
     }
@@ -428,7 +428,7 @@ public class DatabaseManager {
                 log.add(info.getDate().toString());
                 pair.put(info.getDate(), 1);
             }
-            else{
+            else {
                 Integer bubble = pair.remove(info.getDate());
 
                 pair.put(info.getDate(), bubble + 1);
