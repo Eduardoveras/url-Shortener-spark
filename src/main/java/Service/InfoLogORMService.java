@@ -5,6 +5,11 @@ package Service;
 
 import Entity.InfoLog;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.sound.midi.MidiDevice;
+import java.util.List;
+
 public class InfoLogORMService extends GenericORMService<InfoLog>{
 
     private static InfoLogORMService instance;
@@ -19,5 +24,13 @@ public class InfoLogORMService extends GenericORMService<InfoLog>{
             instance = new InfoLogORMService();
 
         return instance;
+    }
+    public static List<InfoLog> FindShortURLInstance(String shortURL){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" + shortURL + "'", InfoLog.class);
+
+        return query.getResultList();
     }
 }

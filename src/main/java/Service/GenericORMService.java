@@ -24,7 +24,7 @@ public class GenericORMService<T> {
         this.classEntity = classEntity;
     }
 
-    public EntityManager GetEntityManager(){ return emf.createEntityManager(); }
+    public static EntityManager GetEntityManager(){ return emf.createEntityManager(); }
 
     // Class Methods
     public void Create(T entity){

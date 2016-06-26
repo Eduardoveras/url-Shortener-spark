@@ -8,7 +8,8 @@ import Service.*;
 import org.h2.tools.Server;
 
 import javax.persistence.PersistenceException;
-import java.sql.SQLException;
+import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class DatabaseManager {
@@ -60,6 +61,15 @@ public class DatabaseManager {
         }
         else
             System.out.println("\nURL Database already configured!\n");
+
+        Map<Date, Integer> data = FetchURLDataByDate("cffe0905");
+
+        Set<Date> legend = ShowDateMapLegend(data);
+
+        for (Date key:
+             legend) {
+            System.out.println(key.toString() + " " + data.get(key));
+        }
     }
 
     /*
@@ -415,5 +425,35 @@ public class DatabaseManager {
         if(CompileInfoLogData(shortURL, browser, OS, country))
             System.out.println("\n\nInfoLog Updated Successfully!\n");
 
+    }
+
+    public static Map<Date, Integer> FetchURLDataByDate(String url){
+
+        ArrayList<String> log = new ArrayList<>();
+        List<InfoLog> data = InfoLogORMService.FindShortURLInstance(url);
+
+        Map<Date, Integer> pair = new HashMap<>();
+
+        for (InfoLog info:
+                data) {
+            if(!IsDataIncluded(info.getDate().toString(), log)){
+                log.add(info.getDate().toString());
+                pair.put(info.getDate(), 1);
+            }
+            else{
+                Integer bubble = pair.remove(info.getDate());
+
+                pair.put(info.getDate(), bubble + 1);
+            }
+        }
+
+        return pair;
+    }
+
+    public static Set<Date> ShowDateMapLegend(Map<Date, Integer> map){
+
+        ArrayList<Date> legend = new ArrayList<>();
+
+        return map.keySet();
     }
 }
