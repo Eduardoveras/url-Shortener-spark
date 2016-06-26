@@ -63,7 +63,7 @@ public class pageCreator {
             attributes.put("user",current_username);
             attributes.put("pagename","Register");
             attributes.put("message", "Welcome");
-            return new ModelAndView(attributes, "login.ftl");
+            return new ModelAndView(attributes, "register.ftl");
         }, new FreeMarkerEngine());
 
         get("/login", (request, response) -> {
@@ -143,6 +143,30 @@ public class pageCreator {
             {
                 System.out.println("Loggin Failed, check user and password");
                 response.redirect("/login");
+            }
+
+
+            return username;
+        });
+
+
+
+        post("/register", (request, response) -> {
+
+            String username = request.queryParams("username");
+            String pass = request.queryParams("password");
+            String Name = request.queryParams("firstname");
+            String lastName = request.queryParams("lastname");
+            if (DatabaseManager.CheckUserCredentials(username))
+            {
+                System.out.println("The user "+username+" already exists, try again");
+                response.redirect("/register");
+            }
+            else
+            {
+                DatabaseManager.CreateNewUser(username,Name,lastName,pass);
+                request.session().attribute("user",username);
+                response.redirect("/");
             }
 
 
