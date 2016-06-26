@@ -33,8 +33,9 @@
                                 <input class="mdl-textfield__input" type="password" id="password" name="password">
                                 <label class="mdl-textfield__label">password.</label>
                             </div>
-                                <div class="g-recaptcha" data-sitekey="6Le7WCMTAAAAAFGqChVDfyU4lrF2N-ETD54H4WQa"></div>
-                            
+
+                            <div class="g-recaptcha" data-sitekey="6Le7WCMTAAAAAFGqChVDfyU4lrF2N-ETD54H4WQa"></div>
+
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
                             <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Login">

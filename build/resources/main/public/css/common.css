@@ -171,3 +171,9 @@ a {
     color: inherit; /* blue colors for links too */
     text-decoration: inherit; /* no underline */
 }
+
+.rc-anchor-alert
+{
+    display:none;
+    opacity: 0;
+}
