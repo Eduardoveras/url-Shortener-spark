@@ -27,15 +27,14 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="js/common.js"></script>
+    <script src="/js/common.js"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="/css/common.css">
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
-
 
 </head>

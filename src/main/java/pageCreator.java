@@ -113,16 +113,12 @@ public class pageCreator {
             ArrayList<String> arr = new ArrayList<String>();
             for (java.sql.Date key: legend) {
 
-                String theValue= "'" + data.get(key)+"',"+"new Date("+df.format(key) + ")";
+                String theValue= "new Date("+df.format(key) + "),"+ data.get(key);
                 System.out.println(theValue);
                 arr.add(theValue);
             }
 
             attributes.put("accDates",arr);
-
-
-
-
 
             return new ModelAndView(attributes, "stats.ftl");
         }, new FreeMarkerEngine());

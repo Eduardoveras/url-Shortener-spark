@@ -42,16 +42,16 @@
             <div class="mdl-cell mdl-cell--4-col">
                 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-card--expand">
-                        <img class="image-pefect" src="/media/test/website.png"/>
+                        <img class="image-pefect" src="${url.getPreviewURL()}"/>
                     </div>
                     <div class="mdl-card__title mdl-card--expand">
-                        <a href="${url.getOriginalURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
+                        <a href="/p/${url.getShortURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
                     </div>
                     <div class="mdl-card__supporting-text">
                     Directs to: ${url.getOriginalURL()}
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/p/${url.getShortURL()}/stats">
                             VIEW STATS
                         </a>
                     </div>

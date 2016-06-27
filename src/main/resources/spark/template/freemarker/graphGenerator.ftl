@@ -9,11 +9,11 @@
         <#list accDates as item>
             [${item}],
         </#list>
-            [ '4', new Date(2016, 12, 5)]
+            [new Date(2016, 12, 5),2]
         ]);
 
         var options = {
-            title: 'Company Performance',
+            title: 'Short Url Stats',
             curveType: 'function',
             legend: { position: 'bottom' }
         };
