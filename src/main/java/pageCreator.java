@@ -1,5 +1,6 @@
 import Entity.URL;
 import Entity.User;
+import eu.bitwalker.useragentutils.UserAgent;
 import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -138,7 +139,9 @@ public class pageCreator {
                 if (!originalURL.toLowerCase().matches("^\\w+://.*")) {
                     originalURL = "http://" + originalURL;
                 }
-                DatabaseManager.TriggerForEveryUse(urlid,request.userAgent(),request.userAgent(),"Domincan Republic");
+                UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
+                userAgent.getBrowser();
+                DatabaseManager.TriggerForEveryUse(urlid,userAgent.getBrowser().getName(),userAgent.getOperatingSystem().getName(),request.ip());
                 response.redirect(originalURL);
             }
             return new ModelAndView(attributes, "404.ftl");

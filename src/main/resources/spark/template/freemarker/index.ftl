@@ -42,7 +42,7 @@
             <div class="mdl-cell mdl-cell--4-col">
                 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                     <div class="mdl-card__title mdl-card--expand">
-                        <img class="image-pefect" src="${url.getPreviewURL()}"/>
+                        <img class="image-pefect" <#--src="${url.getPreviewURL()}"-->/>
                     </div>
                     <div class="mdl-card__title mdl-card--expand">
                         <a href="/p/${url.getShortURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
@@ -56,9 +56,10 @@
                         </a>
                     </div>
                     <div class="mdl-card__menu">
-                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <a href="javascript:fbShare('www.acorta.do/${url.getShortURL()}', 'Fb Share', 'Facebook share popup', 'https://www.colourbox.com/preview/2375712-vector-icon-of-scissors-all-layers-are-grouped.jpg', 520, 350)" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                             <i class="material-icons">share</i>
-                        </button>
+                        </a>
+
                     </div>
                 </div>
             </div>
