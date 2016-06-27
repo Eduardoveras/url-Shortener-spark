@@ -23,24 +23,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list userList as user>
+                <#list userList as theUser>
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric"><img
                             src="https://getmdl.io/templates/dashboard/images/user.jpg" class="demo-avatar"></td>
-                    <td class="mdl-data-table__cell--non-numeric">${user.getUsername()}</td>
-                    <td class="mdl-data-table__cell--non-numeric">${user.getFirstName()}</td>
-                    <td class="mdl-data-table__cell--non-numeric">${user.getLastName()}</td>
-                    <td class="mdl-data-table__cell--non-numeric">${user.getPassword()}</td>
-                    <td class="mdl-data-table__cell--non-numeric">${user.isAdmin()?string('yes', 'no')}</td>
+                    <td class="mdl-data-table__cell--non-numeric">${theUser.getUsername()}</td>
+                    <td class="mdl-data-table__cell--non-numeric">${theUser.getFirstName()}</td>
+                    <td class="mdl-data-table__cell--non-numeric">${theUser.getLastName()}</td>
+                    <td class="mdl-data-table__cell--non-numeric">${theUser.getPassword()}</td>
+                    <td class="mdl-data-table__cell--non-numeric">${theUser.isAdmin()?string('yes', 'no')}</td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <#if user.getUsername()=="admin" || user.getUsername()=="guest">
+                        <#if theUser.getUsername()=="admin" || theUser.getUsername()=="guest">
                             <button class="mdl-button mdl-js-button" disabled>
                                 UNEDITABLE
                             </button>
                         <#else >
                             <form action="" METHOD="POST">
-                                <input type="hidden" name="username" id="username" value="${user.getUsername()}">
-                                <#if user.isAdmin()>
+                                <input type="hidden" name="username" id="username" value="${theUser.getUsername()}">
+                                <#if theUser.isAdmin()>
                                     <input class="mdl-button mdl-js-button" type="submit" value="Revoke Admin">
                                 <#else>
                                     <input class="mdl-button mdl-js-button" type="submit" value="Make Admin">
@@ -49,13 +49,13 @@
                         </#if>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <#if user.getUsername()=="admin" || user.getUsername()=="guest">
+                        <#if theUser.getUsername()=="admin" || theUser.getUsername()=="guest">
                             <button class="mdl-button mdl-js-button" disabled>
                                 UNDELETABLE!
                             </button>
                         <#else >
                             <form action="" METHOD="POST">
-                                <input type="hidden" name="username" id="username" value="${user.getUsername()}">
+                                <input type="hidden" name="username" id="username" value="${theUser.getUsername()}">
                                 <input class="mdl-button mdl-js-button" type="submit" value="Delete">
                             </form>
                         </#if>

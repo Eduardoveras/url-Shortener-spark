@@ -1,6 +1,4 @@
-import static spark.Spark.get;
-import static spark.Spark.port;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 /**
  * Created by Eduardo veras on 19-Jun-16.
@@ -11,6 +9,7 @@ public class Main {
         port(getHerokuAssignedPort());
 
         staticFileLocation("/public");
+        //staticFiles.expireTime(600);
 
         DatabaseManager.BootDataBase();
 

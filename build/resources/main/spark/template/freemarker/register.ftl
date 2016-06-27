@@ -19,7 +19,7 @@
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Welcome to URL Short</h2>
                         </div>
-                    <#if user == "guest">
+                    <#if user.getUsername() == "guest">
                         <div class="mdl-card__supporting-text">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="username" name="username">

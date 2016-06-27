@@ -53,16 +53,27 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("message", "Welcome");
             attributes.put("pagename","Home");
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             ArrayList<URL> urls = DatabaseManager.FetchAllURLForUser(current_username);
             attributes.put("urls",urls);
 
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());
 
+        get("/viewall", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("message", "Welcome");
+            attributes.put("pagename","View All Users");
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
+            List<URL> urls = DatabaseManager.FetchAllURL();
+            attributes.put("urls",urls);
+
+            return new ModelAndView(attributes, "viewall.ftl");
+        }, new FreeMarkerEngine());
+
         get("/register", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Register");
             attributes.put("message", "Welcome");
             return new ModelAndView(attributes, "register.ftl");
@@ -71,7 +82,7 @@ public class pageCreator {
 
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Login");
             attributes.put("message", "Welcome");
             return new ModelAndView(attributes, "login.ftl");
@@ -79,7 +90,7 @@ public class pageCreator {
 
         get("/instructions", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Instructions");
             return new ModelAndView(attributes, "instructions.ftl");
         }, new FreeMarkerEngine());
@@ -94,7 +105,7 @@ public class pageCreator {
 
         get("/users", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Users Management");
             List<User> userList= DatabaseManager.FetchAllUsers();
             attributes.put("userList",userList);
@@ -105,7 +116,7 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             String urlid =request.params(":urlid");
             attributes.put("urlid",urlid);
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Link Stats");
 
             Map<java.sql.Date, Integer> data = DatabaseManager.FetchURLDataByDate(urlid);
@@ -129,7 +140,7 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("pagename","URL Page");
             attributes.put("message", "Welcome");
-            attributes.put("user",current_username);
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
             String urlid =request.params(":urlid");
             System.out.println("THE PARAM IS:" + urlid);
             String originalURL = DatabaseManager.FetchOriginalURL(urlid);
@@ -172,7 +183,7 @@ public class pageCreator {
             String URL = request.queryParams("URL");
             String username = request.queryParams("username");
             DatabaseManager.CreateNewShortURL(URL,username,request.userAgent(),request.userAgent(),"Dominican Republic");
-
+            response.redirect("/");
             return username;
         });
 

@@ -11,31 +11,6 @@
 
     <main class="mdl-layout__content mdl-color--grey-100">
 
-        <!--THIS IS THE SEARCH BAR BOXING-->
-        <div class="mdl-grid demo-content">
-            <div class="mdl-cell mdl-cell--8-col">
-                <div class="full-width-card mdl-card mdl-shadow--2dp">
-                    <form action="" METHOD="POST">
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Welcome to URL Short</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="URL" name="URL">
-                                <label class="mdl-textfield__label" for="sample3">URL Here...</label>
-                            </div>
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <input type="hidden" name="username" id="username" value="${user.getUsername()}">
-                            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                   type="submit" value="MAKE SHORT">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--END OF THE SEARCH BAR BOXING-->
         <div class="mdl-grid demo-content">
 
         <#list urls as url>
@@ -48,7 +23,7 @@
                         <a href="/p/${url.getShortURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
                     </div>
                     <div class="mdl-card__supporting-text">
-                    Directs to: ${url.getOriginalURL()}
+                        Directs to: ${url.getOriginalURL()}
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/p/${url.getShortURL()}/stats">
