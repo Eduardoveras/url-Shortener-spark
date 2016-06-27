@@ -1,13 +1,17 @@
-import Entity.URL;
-import com.google.api.client.json.Json;
+import java.io.IOException;
+import java.net.URL;
 
-import java.io.InputStream;
+import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.ParseException;
 
 public class ResourceFetcher {
 
     public static String getDescription(String url) {
 
-        String Descripcion = "http://api.screenshotmachine.com/?key=4c2f50&size=E&format=JPG&cacheLimit=0&timeout=200&url=" + url;
+        String Descripcion = "http://api.screenshotmachine.com/?key=4c2f50&size=E&format=JPG&cacheLimit=0&timeout=0&cacheLimit=14&url=" + url;
 
             return Descripcion;
     }
@@ -18,27 +22,34 @@ public class ResourceFetcher {
             return TheUrl;
     }
 
-    public static String getCountryFromIP(String ip) {
 
-        String Country = "http://api.db-ip.com/v2/7496a2baeeff5630344751043641127d7b0cf062/" + ip;
-        return Country;
-    }
-/*
-    public static String getcontry(String url_ip){
+    public static String json_to_java(String ip){
 
-        URL url = new  URL(url_ip);
-        try (InputStream is = url.openStream();
-             JsonReader rdr = Json.createReader(is)) {
-            JsonObject obj = rdr.readObject();
-            JsonArray results = obj.getJsonArray("data");
-            for (JsonObject result : results.getValuesAs(JsonObject.class)) {
-                System.out.print(result.getJsonObject("from").getString("name"));
-                System.out.print(": ");
-                System.out.println(result.getString("message", ""));
-                System.out.println("-----------");
+
+        String Country_url = "http://api.db-ip.com/v2/7496a2baeeff5630344751043641127d7b0cf062/" + ip;
+
+                try {
+                    String genreJson = IOUtils.toString(new URL(Country_url));
+                    JSONObject genreJsonObject = (JSONObject) JSONValue.parseWithException(genreJson);
+
+                    // get the data
+                    JSONArray countryName;
+                    countryName = (JSONArray) genreJsonObject.get("countryName");
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+
+                return ;
             }
-        }
 
-*/
+    }
+
+    public static String flag(String ip) {
+
+        String link_flag= "https://ipfind.co/flags?ip="+ip+"&auth=d9cec36e-01af-4d43-9452-e5cb08eab33e";
+
+        return link_flag;
+    }
+
 
 }
