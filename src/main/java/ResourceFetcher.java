@@ -1,13 +1,8 @@
-import Entity.URL;
-import com.google.api.client.json.Json;
-
-import java.io.InputStream;
-
 public class ResourceFetcher {
 
     public static String getDescription(String url) {
 
-        String Descripcion = "http://api.screenshotmachine.com/?key=4c2f50&size=E&format=JPG&cacheLimit=0&timeout=200&url=" + url;
+        String Descripcion = "http://api.screenshotmachine.com/?key=4c2f50&size=E&format=JPG&cacheLimit=0&timeout=0&cacheLimit=14&url=" + url;
 
             return Descripcion;
     }
