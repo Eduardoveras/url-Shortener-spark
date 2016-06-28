@@ -357,7 +357,7 @@ public class DatabaseManager {
             return false;
         } finally{
 
-            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, ResourceFetcher.getCountryFromIP(ip)))
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, ResourceFetcher.json_to_java(ip)))
                 System.out.println("\n\nInfoLog Updated Successfully!\n");
             return true;
         }
@@ -409,7 +409,7 @@ public class DatabaseManager {
     // To be used everytime a user uses a shortURL
     public static void TriggerForEveryUse(String shortURL, String browser, String OS, String ip){
 
-        if(CompileInfoLogData(shortURL, browser, OS, ResourceFetcher.getCountryFromIP(ip)))
+        if(CompileInfoLogData(shortURL, browser, OS, ResourceFetcher.json_to_java(ip)))
             System.out.println("\n\nInfoLog Updated Successfully!\n");
 
     }

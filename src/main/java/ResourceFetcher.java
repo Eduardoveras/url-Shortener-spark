@@ -39,9 +39,7 @@ public class ResourceFetcher {
                     e.printStackTrace();
                 }
 
-                return ;
-            }
-
+                return Country_url;
     }
 
     public static String flag(String ip) {
