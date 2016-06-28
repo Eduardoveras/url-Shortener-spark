@@ -61,15 +61,13 @@ public class DatabaseManager {
         }
         else
             System.out.println("\nURL Database already configured!\n");
-/*
-        Map<Date, Integer> data = FetchURLDataByDate("cffe0905");
 
-        Set<Date> legend = ShowDateMapLegend(data);
+        urls = URLORMService.FindUserURL("admin");
 
-        for (Date key: legend) {
-            System.out.println(key.toString() + " " + data.get(key));
+        for (URL u:
+             urls) {
+            System.out.println(u.getShortURL() + " " + u.getUser().getUsername());
         }
-        */
     }
 
     /*
@@ -387,22 +385,11 @@ public class DatabaseManager {
         }
     }
 
-    public static ArrayList<URL> FetchAllURLForUser(String username){
+    public static List<URL> FetchAllURLForUser(String username){
 
         ArrayList<URL> userURL = new ArrayList<>();
 
-        List<URL> urls = URLORMService.GetInstance().FindAll();
-        if (!urls.isEmpty())
-        {
-            for (URL url: urls) {
-                String datauser = UserORMService.GetInstance().Find(username).getUsername();
-
-                if(url.getUser().getUsername().equals(datauser))
-                    userURL.add(url);
-            }
-        }
-
-        return userURL;
+        return URLORMService.FindUserURL(username);
     }
 
     public static Integer HowManyClicks(String shortURL){

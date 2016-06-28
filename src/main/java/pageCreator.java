@@ -54,7 +54,7 @@ public class pageCreator {
             attributes.put("message", "Welcome");
             attributes.put("pagename","Home");
             attributes.put("user",DatabaseManager.FetchUser(current_username));
-            ArrayList<URL> urls = DatabaseManager.FetchAllURLForUser(current_username);
+            List<URL> urls = DatabaseManager.FetchAllURLForUser(current_username);
             attributes.put("urls",urls);
 
             return new ModelAndView(attributes, "index.ftl");

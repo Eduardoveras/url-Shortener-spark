@@ -5,6 +5,10 @@ package Service;
 
 import Entity.URL;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
+
 public class URLORMService extends GenericORMService<URL>{
 
     private static URLORMService instance;
@@ -21,4 +25,12 @@ public class URLORMService extends GenericORMService<URL>{
         return instance;
     }
 
+    public static List<URL> FindUserURL(String username){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<URL> query = em.createQuery("select u from URL as u where u.user.username = '" + username + "'", URL.class);
+
+        return query.getResultList();
+    }
 }
