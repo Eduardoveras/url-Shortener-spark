@@ -52,10 +52,10 @@ public class DatabaseManager {
         {
             System.out.println("Registering admin urls");
 
-            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), ResourceFetcher.getDescription("http://facebook.com")));
-            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), ResourceFetcher.getDescription("http://fb.com")));
-            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), ResourceFetcher.getDescription("http://youtube.com")));
-            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), ResourceFetcher.getDescription("http://wikipedia.com")));
+            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), ResourceFetcher.getDescription("http://facebook.com"), ResourceFetcher.getQrCodeURL("http://facebook.com")));
+            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), ResourceFetcher.getDescription("http://fb.com"), ResourceFetcher.getQrCodeURL("http://fb.com")));
+            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), ResourceFetcher.getDescription("http://youtube.com"), ResourceFetcher.getQrCodeURL("http://youtube.com")));
+            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), ResourceFetcher.getDescription("http://wikipedia.com"), ResourceFetcher.getQrCodeURL("http://wikipedia.com")));
 
             System.out.println("Success!");
         }
@@ -348,7 +348,7 @@ public class DatabaseManager {
                 return false;
             }
 
-            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), ResourceFetcher.getDescription(original)));
+            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), ResourceFetcher.getDescription(original), ResourceFetcher.getQrCodeURL(original)));
 
         } catch (PersistenceException exp){
             System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");

@@ -24,6 +24,9 @@ public class URL implements Serializable {
     @Column(name = "PREVIEWURL")
     private String previewURL;
 
+    @Column(name = "QRURL")
+    private String qrURL;
+
     @ManyToOne  // @Column not allowed in many to one relationship
     private User user;
 
@@ -32,21 +35,23 @@ public class URL implements Serializable {
 
     }
 
-    public URL(String originalURL, User user, String previewURL) {
+    public URL(String originalURL, User user, String previewURL, String qrURL) {
 
         this.setOriginalURL(originalURL);
         this.setShortURL(UUID.randomUUID().toString().split("-")[0]);
         this.setUser(user);
         this.setPreviewURL(previewURL);
+        this.setQrURL(qrURL);
 
     }
 
-    public URL(String shortURL, String originalURL, User user, String previewURL) {
+    public URL(String shortURL, String originalURL, User user, String previewURL, String qrURL) {
 
         this.setOriginalURL(originalURL);
         this.setShortURL(shortURL);
         this.setUser(user);
         this.setPreviewURL(previewURL);
+        this.setQrURL(qrURL);
 
     }
 
@@ -81,5 +86,13 @@ public class URL implements Serializable {
 
     public void setPreviewURL(String previewURL) {
         this.previewURL = previewURL;
+    }
+
+    public String getQrURL() {
+        return qrURL;
+    }
+
+    public void setQrURL(String qrURL) {
+        this.qrURL = qrURL;
     }
 }
