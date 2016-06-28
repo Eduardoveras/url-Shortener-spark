@@ -40,13 +40,12 @@ public class ResourceFetcher {
                 }
 
                 return Country_url;
-<<<<<<< Updated upstream
+
     }
-=======
-            }
 
 
->>>>>>> Stashed changes
+
+
 
     public static String flag(String ip) {
 
