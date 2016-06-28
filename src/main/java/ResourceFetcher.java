@@ -25,28 +25,21 @@ public class ResourceFetcher {
 
     public static String json_to_java(String ip){
 
-
         String Country_url = "http://api.db-ip.com/v2/7496a2baeeff5630344751043641127d7b0cf062/" + ip;
 
-                try {
-                    String genreJson = IOUtils.toString(new URL(Country_url));
-                    JSONObject genreJsonObject = (JSONObject) JSONValue.parseWithException(genreJson);
+            try {
+                String genreJson = IOUtils.toString(new URL(Country_url));
+                JSONObject genreJsonObject = (JSONObject) JSONValue.parseWithException(genreJson);
 
-                    // get the data
-                    JSONArray countryName;
-                    countryName = (JSONArray) genreJsonObject.get("countryName");
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
-                }
-
-                return Country_url;
-<<<<<<< Updated upstream
-    }
-=======
+                // get the data
+                JSONArray countryName;
+                countryName = (JSONArray) genreJsonObject.get("countryName");
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
             }
 
-
->>>>>>> Stashed changes
+        return Country_url;
+    }
 
     public static String flag(String ip) {
 
