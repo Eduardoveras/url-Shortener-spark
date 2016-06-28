@@ -33,4 +33,17 @@ public class URLORMService extends GenericORMService<URL>{
 
         return query.getResultList();
     }
+
+    public static String ShowShortURLForUser(String originalURL, String username){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<URL> query = em.createQuery("select u from URL as u where u.user.username = '" +
+                username + "' and u.originalURL = '" +
+                originalURL + "'", URL.class);
+
+        List<URL> urls = query.getResultList();
+
+        return urls.get(0).getShortURL();
+    }
 }

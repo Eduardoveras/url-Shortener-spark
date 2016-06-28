@@ -62,12 +62,6 @@ public class DatabaseManager {
         else
             System.out.println("\nURL Database already configured!\n");
 
-        urls = URLORMService.FindUserURL("admin");
-
-        for (URL u:
-             urls) {
-            System.out.println(u.getShortURL() + " " + u.getUser().getUsername());
-        }
     }
 
     /*
@@ -282,15 +276,7 @@ public class DatabaseManager {
 
     private static String FetchShortURL(String originalURL, String username){
 
-        List<URL> urls = FetchAllURL();
-
-        for (URL url:
-                urls) {
-            if(url.getOriginalURL().equals(originalURL) && url.getUser().getUsername().equals(username))
-                return url.getShortURL();
-        }
-
-        return null;
+        return URLORMService.ShowShortURLForUser(originalURL, username);
     }
 
     // Exclusive too Admin
