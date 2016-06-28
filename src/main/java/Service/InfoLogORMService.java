@@ -7,7 +7,6 @@ import Entity.InfoLog;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.sound.midi.MidiDevice;
 import java.util.List;
 
 public class InfoLogORMService extends GenericORMService<InfoLog>{

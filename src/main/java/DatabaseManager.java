@@ -405,6 +405,11 @@ public class DatabaseManager {
         return userURL;
     }
 
+    public static Integer HowManyClicks(String shortURL){
+
+        return InfoLogORMService.FindShortURLInstance(shortURL).size();
+    }
+
     // Data Related Functions
     // To be used everytime a user uses a shortURL
     public static void TriggerForEveryUse(String shortURL, String browser, String OS, String ip){
