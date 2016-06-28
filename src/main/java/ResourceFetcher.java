@@ -40,13 +40,23 @@ public class ResourceFetcher {
                 }
 
                 return Country_url;
+<<<<<<< Updated upstream
     }
+=======
+            }
+
+
+>>>>>>> Stashed changes
 
     public static String flag(String ip) {
 
         String link_flag= "https://ipfind.co/flags?ip="+ip+"&auth=d9cec36e-01af-4d43-9452-e5cb08eab33e";
 
         return link_flag;
+    }
+    public static String getCountryFromIP(String ip)
+    {
+        return "Dom Rep";
     }
 
 
