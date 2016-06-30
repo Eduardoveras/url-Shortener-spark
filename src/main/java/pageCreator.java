@@ -151,7 +151,7 @@ public class pageCreator {
                     originalURL = "http://" + originalURL;
                 }
                 UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
-                userAgent.getBrowser();
+                //userAgent.getBrowser();
                 DatabaseManager.TriggerForEveryUse(urlid,userAgent.getBrowser().getName(),userAgent.getOperatingSystem().getName(),request.ip());
                 response.redirect(originalURL);
             }
@@ -182,7 +182,8 @@ public class pageCreator {
         post("/", (request, response) -> {
             String URL = request.queryParams("URL");
             String username = request.queryParams("username");
-            DatabaseManager.CreateNewShortURL(URL,username,request.userAgent(),request.userAgent(),"Dominican Republic");
+            UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
+            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(),"Dominican Republic");
             response.redirect("/");
             return username;
         });
