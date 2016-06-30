@@ -18,7 +18,7 @@ public class ResourceFetcher {
 
     public static String getQrCodeURL(String url) {
 
-        String TheUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + url + "&size=150x150&color=0-0-0&bgcolor=FFFF00&format=png";
+        String TheUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + url + "&size=150x150&color=0-0-0&bgcolor=FFFFFF&format=png";
             return TheUrl;
     }
 
@@ -31,15 +31,7 @@ public class ResourceFetcher {
                 String genreJson = IOUtils.toString(new URL(Country_url));
                 JSONObject genreJsonObject = (JSONObject) JSONValue.parseWithException(genreJson);
 
-<<<<<<< HEAD
-                return Country_url;
 
-    }
-
-
-
-
-=======
                 // get the data
                 JSONArray countryName;
                 countryName = (JSONArray) genreJsonObject.get("countryName");
@@ -49,7 +41,7 @@ public class ResourceFetcher {
 
         return Country_url;
     }
->>>>>>> master
+
 
     public static String flag(String ip) {
 

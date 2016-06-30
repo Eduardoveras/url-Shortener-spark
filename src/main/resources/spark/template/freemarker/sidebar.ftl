@@ -16,13 +16,32 @@
         </div>
     </header>
     <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-        <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-        <a class="mdl-navigation__link" href="/login"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Login</a>
-        <a class="mdl-navigation__link" href="/register"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person_add</i>Register</a>
-        <a class="mdl-navigation__link" href="/users"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment_ind</i>Manage Users</a>
-        <a class="mdl-navigation__link" href="/instructions"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>Instructions</a>
-        <a class="mdl-navigation__link" href="/viewall"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">list</i>ViewAll</a>
+    <#if user.isAdmin()>
+        <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                    role="presentation">home</i>Home</a>
+        <a class="mdl-navigation__link" href="/login"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                         role="presentation">people</i>Login</a>
+        <a class="mdl-navigation__link" href="/register"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                            role="presentation">person_add</i>Register</a>
+        <a class="mdl-navigation__link" href="/users"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                         role="presentation">assignment_ind</i>Manage Users</a>
+        <a class="mdl-navigation__link" href="/instructions"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                role="presentation">assignment</i>Instructions</a>
+        <a class="mdl-navigation__link" href="/viewall"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                           role="presentation">list</i>ViewAll</a>
+    <#else>
+        <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                    role="presentation">home</i>Home</a>
+        <a class="mdl-navigation__link" href="/login"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                         role="presentation">people</i>Login</a>
+        <a class="mdl-navigation__link" href="/register"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                            role="presentation">person_add</i>Register</a>
+        <a class="mdl-navigation__link" href="/instructions"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                role="presentation">assignment</i>Instructions</a>
+    </#if>
         <div class="mdl-layout-spacer"></div>
-        <a class="mdl-navigation__link" href="https://github.com/Eduardoveras94/url-Shortener-spark"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">timeline</i>GitHub<span class="visuallyhidden">Help</span></a>
+        <a class="mdl-navigation__link" href="https://github.com/Eduardoveras94/url-Shortener-spark"><i
+                class="mdl-color-text--blue-grey-400 material-icons" role="presentation">timeline</i>GitHub<span
+                class="visuallyhidden">Help</span></a>
     </nav>
 </div>

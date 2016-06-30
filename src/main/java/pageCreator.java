@@ -118,6 +118,9 @@ public class pageCreator {
             attributes.put("urlid",urlid);
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Link Stats");
+            String QrUrl = ResourceFetcher.getQrCodeURL(DatabaseManager.FetchOriginalURL(urlid));
+            attributes.put("QrUrl",QrUrl);
+
 
             Map<java.sql.Date, Integer> data = DatabaseManager.FetchURLDataByDate(urlid);
             Set<java.sql.Date> legend = DatabaseManager.ShowDateMapLegend(data);
