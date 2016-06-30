@@ -107,7 +107,10 @@ public class DatabaseManager {
     private static boolean CompileInfoLogData(String shortURL, String browser, String OS, String country){
 
         try{
-
+            System.out.println(shortURL);
+            System.out.println(browser);
+            System.out.println(OS);
+            System.out.println(country);
             InfoLogORMService.GetInstance().Create(new InfoLog(URLORMService.GetInstance().Find(shortURL), browser, OS, country));
             return true;
         } catch (Exception exp){
@@ -387,7 +390,7 @@ public class DatabaseManager {
     // To be used everytime a user uses a shortURL
     public static void TriggerForEveryUse(String shortURL, String browser, String OS, String ip){
 
-        if(CompileInfoLogData(shortURL, browser, OS, ResourceFetcher.json_to_java(ip)))
+        if(CompileInfoLogData(shortURL, browser, OS, "Dominican Republic"))
             System.out.println("\n\nInfoLog Updated Successfully!\n");
 
     }
