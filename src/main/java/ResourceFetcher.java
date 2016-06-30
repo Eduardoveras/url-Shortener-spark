@@ -1,12 +1,3 @@
-import java.io.IOException;
-import java.net.URL;
-
-import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.ParseException;
-
 public class ResourceFetcher {
 
     public static String getDescription(String url) {
@@ -25,20 +16,10 @@ public class ResourceFetcher {
 
     public static String json_to_java(String ip){
 
-        String Country_url = "http://api.db-ip.com/v2/7496a2baeeff5630344751043641127d7b0cf062/" + ip;
+       String country_code = "http://ipinfo.io/"+ ip +"/country";
 
-            try {
-                String genreJson = IOUtils.toString(new URL(Country_url));
-                JSONObject genreJsonObject = (JSONObject) JSONValue.parseWithException(genreJson);
 
-                // get the data
-                JSONArray countryName;
-                countryName = (JSONArray) genreJsonObject.get("countryName");
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-
-        return Country_url;
+        return country_code;
     }
 
     public static String flag(String ip) {
@@ -47,10 +28,7 @@ public class ResourceFetcher {
 
         return link_flag;
     }
-    public static String getCountryFromIP(String ip)
-    {
-        return "Dom Rep";
-    }
+    //public static String getCountryFromIP(String ip) return "Dom Rep";
 
 
 }
