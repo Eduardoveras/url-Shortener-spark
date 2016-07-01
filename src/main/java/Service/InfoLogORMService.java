@@ -45,4 +45,15 @@ public class InfoLogORMService extends GenericORMService<InfoLog>{
 
         return query.getResultList().size();
     }
+
+    public static Integer HowManyTimesUsedByOS(String shortURL, String os){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" +
+                shortURL + "' and i.OS = '" +
+                os + "'", InfoLog.class);
+
+        return query.getResultList().size();
+    }
 }
