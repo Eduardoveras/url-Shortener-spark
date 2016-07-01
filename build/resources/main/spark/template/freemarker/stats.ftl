@@ -11,7 +11,7 @@
         <div class="mdl-grid demo-content">
             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-
+                <div id="regions_div" ></div>
             </div>
             <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
                 <div id="curve_chart"></div>
