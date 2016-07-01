@@ -56,7 +56,7 @@
         var chart2 = new google.visualization.Calendar(document.getElementById('curve_chart2'));
 
         var options = {
-            title: "Red Sox Attendance",
+            title: "Url Access Calendar",
             height: 350
         };
 

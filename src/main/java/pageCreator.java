@@ -11,9 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-import static spark.Spark.before;
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 /**
  * Created by Eduardo veras on 19-Jun-16.
@@ -45,13 +43,18 @@ public class pageCreator {
 
 
         });
-/*
-        before("/viewall", (request, response) -> {
-
-        if (request.queryParams(user))
 
 
-        });*/
+        before("/viewall","/users",(request, response) -> {
+            boolean authenticated=false;
+            if (current_username.equals("admin"))
+            {
+                authenticated=true;
+            }
+            if (!authenticated) {
+                halt(401, "<h1>You are not welcome here</h1>");
+            }
+        });
     }
 
     private static void generateGets() {
