@@ -306,7 +306,7 @@ public class DatabaseManager {
             return false;
         } finally{
 
-            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, ResourceFetcher.json_to_java(ip)))
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, "Dominican Republic"/* ResourceFetcher.json_to_java(ip) */))
                 System.out.println("\n\nInfoLog Updated Successfully!\n");
             return true;
         }
