@@ -120,10 +120,21 @@ public class pageCreator {
             attributes.put("pagename","Link Stats");
             String QrUrl = ResourceFetcher.getQrCodeURL(DatabaseManager.FetchOriginalURL(urlid));
             attributes.put("QrUrl",QrUrl);
-
-            attributes.put("allBrowsers",DatabaseManager.FetchAllBrowser());
-            attributes.put("allOs",DatabaseManager.FetchAllOS());
-            attributes.put("allCountries",DatabaseManager.FetchAllCountries());
+            ArrayList<String> allbrow = DatabaseManager.FetchAllBrowser();
+            ArrayList<String> allOs = DatabaseManager.FetchAllOS();
+            ArrayList<String> allCount = DatabaseManager.FetchAllCountries();
+            for (String s:allbrow) {
+                System.out.println("The BROwSER is:"+s);
+            }
+            for (String s:allOs) {
+                System.out.println("The OS is:"+s);
+            }
+            for (String s:allCount) {
+                System.out.println("The Cuntry is:"+s);
+            }
+            attributes.put("allBrowsers",allbrow);
+            attributes.put("allOs",allOs);
+            attributes.put("allCountries",allCount);
 
 
 
