@@ -45,6 +45,13 @@ public class pageCreator {
 
 
         });
+/*
+        before("/viewall", (request, response) -> {
+
+        if (request.queryParams(user))
+
+
+        });*/
     }
 
     private static void generateGets() {

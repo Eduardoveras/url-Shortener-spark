@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    google.charts.load('current', {'packages':['geochart','corechart']});
+    google.charts.load('current', {'packages':['geochart','corechart','line',"calendar"]});
     //google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     google.charts.setOnLoadCallback(drawRegionsMap);
@@ -34,7 +34,11 @@
 
 
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'date', id: 'Date' });
+        dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+
+        dataTable = google.visualization.arrayToDataTable([
             ['Year', 'Visits'],
         <#list accDates as item>
         <#if item?is_last>
@@ -46,18 +50,18 @@
 
         ]);
 
+
+
+        var chart = new google.visualization.Calendar(document.getElementById('curve_chart'));
+        var chart2 = new google.visualization.Calendar(document.getElementById('curve_chart2'));
+
         var options = {
-            title: 'Short Url Stats',
-            curveType: 'function',
-                height: 280,
-            legend: { position: 'bottom' }
+            title: "Red Sox Attendance",
+            height: 350
         };
 
-        var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
-        var chart2= new google.visualization.AreaChart(document.getElementById('curve_chart2'));
-
-        chart.draw(data, options);
-        chart2.draw(data, options);
+        chart.draw(dataTable, options);
+        chart2.draw(dataTable, options);
     }
 
 
