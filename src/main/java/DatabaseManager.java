@@ -62,6 +62,37 @@ public class DatabaseManager {
         else
             System.out.println("\nURL Database already configured!\n");
 
+        // Browsers
+        Map<String, Float> browsers = FetchURLDataByBrowser("a613c7b3");
+
+        ArrayList<String> log = FetchAllBrowser();
+
+        for (String b:
+             log) {
+            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        }
+
+        System.out.println("\n\n");
+        // OS
+        browsers = FetchURLDataByOS("a613c7b3");
+
+        log = FetchAllOS();
+
+        for (String b:
+                log) {
+            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        }
+
+        System.out.println("\n\n");
+        // Countries
+        browsers = FetchURLDataByCountry("a613c7b3");
+
+        log = FetchAllCountries();
+
+        for (String b:
+                log) {
+            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        }
     }
 
     /*
@@ -166,7 +197,7 @@ public class DatabaseManager {
         return false;
     }
 
-    private static ArrayList<String> FetchAllCountries(){
+    public static ArrayList<String> FetchAllCountries(){
         ArrayList<String> countries = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -180,30 +211,7 @@ public class DatabaseManager {
         return countries;
     }
 
-    // Exclusive to Admin
-    public static Map<String, Integer> FetchAllCountryData(){
-        ArrayList<String> log = new ArrayList<>();
-        Map<String, Integer> countries = new HashMap<>();
-
-        List<InfoLog> archives = FetchAllData();
-
-        for (InfoLog data:
-                archives) {
-            if(!IsDataIncluded(data.getCountry(), log)){
-                log.add(data.getCountry());
-                countries.put(data.getCountry(), 1);
-            }
-            else{
-                Integer bubble = countries.remove(data.getCountry());
-
-                countries.put(data.getCountry(), bubble + 1);
-            }
-        }
-
-        return countries;
-    }
-
-    private static ArrayList<String> FetchAllBrowser(){
+    public static ArrayList<String> FetchAllBrowser(){
         ArrayList<String> browsers = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -217,30 +225,7 @@ public class DatabaseManager {
         return browsers;
     }
 
-    // Exclusive to Admin
-    public static Map<String, Integer> FetchAllBrowserData(){
-        ArrayList<String> log = new ArrayList<>();
-        Map<String, Integer> browsers = new HashMap<>();
-
-        List<InfoLog> archives = FetchAllData();
-
-        for (InfoLog data:
-                archives) {
-            if(!IsDataIncluded(data.getBrowser(), log)){
-                log.add(data.getBrowser());
-                browsers.put(data.getBrowser(), 1);
-            }
-            else{
-                Integer bubble = browsers.remove(data.getBrowser());
-
-                browsers.put(data.getBrowser(), bubble + 1);
-            }
-        }
-
-        return browsers;
-    }
-
-    private static ArrayList<String> FetchAllOS(){
+    public static ArrayList<String> FetchAllOS(){
         ArrayList<String> os = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -252,29 +237,6 @@ public class DatabaseManager {
         }
 
         return os;
-    }
-
-    // Exclusive to Admin
-    public static Map<String, Integer> FetchAllOSData(){
-        ArrayList<String> log = new ArrayList<>();
-        Map<String, Integer> OS = new HashMap<>();
-
-        List<InfoLog> archives = FetchAllData();
-
-        for (InfoLog data:
-                archives) {
-            if(!IsDataIncluded(data.getOS(), log)){
-                log.add(data.getOS());
-                OS.put(data.getOS(), 1);
-            }
-            else{
-                Integer bubble = OS.remove(data.getOS());
-
-                OS.put(data.getOS(), bubble + 1);
-            }
-        }
-
-        return OS;
     }
 
     private static String FetchShortURL(String originalURL, String username){
@@ -423,5 +385,74 @@ public class DatabaseManager {
         ArrayList<Date> legend = new ArrayList<>();
 
         return map.keySet();
+    }
+
+    public static Map<String, Float> FetchURLDataByBrowser(String url){
+
+        ArrayList<String> log = FetchAllBrowser();
+        Map<String, Float> browsers = new HashMap<>();
+
+        Float count = 0f;
+
+        for (String browser:
+             log) {
+            Float bubble = 1f * InfoLogORMService.HowManyTimesUsedByBrowser(url, browser);
+            count += bubble;
+            browsers.put(browser, bubble);
+        }
+
+        for (String browser:
+                log) {
+            Float bubble = browsers.remove(browser);
+            browsers.put(browser, (bubble / count) * 100);
+        }
+
+        return browsers;
+    }
+
+    public static Map<String, Float> FetchURLDataByOS(String url){
+
+        ArrayList<String> log = FetchAllOS();
+        Map<String, Float> OS = new HashMap<>();
+
+        Float count = 0f;
+
+        for (String os:
+                log) {
+            Float bubble = 1f * InfoLogORMService.HowManyTimesUsedByOS(url, os);
+            count += bubble;
+            OS.put(os, bubble);
+        }
+
+        for (String os:
+                log) {
+            Float bubble = OS.remove(os);
+            OS.put(os, (bubble / count) * 100);
+        }
+
+        return OS;
+    }
+
+    public static Map<String, Float> FetchURLDataByCountry(String url){
+
+        ArrayList<String> log = FetchAllCountries();
+        Map<String, Float> countries = new HashMap<>();
+
+        Float count = 0f;
+
+        for (String country:
+                log) {
+            Float bubble = 1f * InfoLogORMService.HowManyTimesUsedByCountry(url, country);
+            count += bubble;
+            countries.put(country, bubble);
+        }
+
+        for (String country:
+                log) {
+            Float bubble = countries.remove(country);
+            countries.put(country, (bubble / count) * 100);
+        }
+
+        return countries;
     }
 }

@@ -1,3 +1,8 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+
 public class ResourceFetcher {
 
     public static String getDescription(String url) {
@@ -14,20 +19,18 @@ public class ResourceFetcher {
     }
 
 
-    public static String json_to_java(String ip){
+    public static String json_to_java(String ip)  {
 
-       String country_code = "http://ipinfo.io/"+ ip +"/country";
+        String URL = "http://ipinfo.io/"+ ip +"/country";
 
-
-
-                // get the data
-                JSONArray countryName;
-                countryName = (JSONArray) genreJsonObject.get("countryName");
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-
-        return Country_url;
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(URL).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String country_code = doc.data();
+        return country_code;
     }
 
 

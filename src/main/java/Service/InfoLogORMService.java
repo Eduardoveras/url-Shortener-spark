@@ -24,12 +24,47 @@ public class InfoLogORMService extends GenericORMService<InfoLog>{
 
         return instance;
     }
+
     public static List<InfoLog> FindShortURLInstance(String shortURL){
 
         EntityManager em = GetEntityManager();
 
-        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" + shortURL + "'", InfoLog.class);
+        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" +
+                shortURL + "'", InfoLog.class);
 
         return query.getResultList();
+    }
+
+    public static Integer HowManyTimesUsedByBrowser(String shortURL, String browser){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" +
+                shortURL + "' and i.browser = '" +
+                browser + "'", InfoLog.class);
+
+        return query.getResultList().size();
+    }
+
+    public static Integer HowManyTimesUsedByOS(String shortURL, String os){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" +
+                shortURL + "' and i.OS = '" +
+                os + "'", InfoLog.class);
+
+        return query.getResultList().size();
+    }
+
+    public static Integer HowManyTimesUsedByCountry(String shortURL, String country){
+
+        EntityManager em = GetEntityManager();
+
+        TypedQuery<InfoLog> query = em.createQuery("select i from InfoLog as i where i.url.shortURL = '" +
+                shortURL + "' and i.country = '" +
+                country + "'", InfoLog.class);
+
+        return query.getResultList().size();
     }
 }
