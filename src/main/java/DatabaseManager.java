@@ -62,6 +62,15 @@ public class DatabaseManager {
         else
             System.out.println("\nURL Database already configured!\n");
 
+        // Browsers
+        Map<String, Float> browsers = FetchURLDatabyBrowser("a613c7b3");
+
+        ArrayList<String> log = FetchAllBrowser();
+
+        for (String b:
+             log) {
+            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        }
     }
 
     /*
@@ -203,7 +212,7 @@ public class DatabaseManager {
         return countries;
     }
 
-    private static ArrayList<String> FetchAllBrowser(){
+    public static ArrayList<String> FetchAllBrowser(){
         ArrayList<String> browsers = new ArrayList<>();
 
         List<InfoLog> archives = FetchAllData();
@@ -212,29 +221,6 @@ public class DatabaseManager {
                 archives) {
             if(!IsDataIncluded(data.getBrowser(), browsers))
                 browsers.add(data.getBrowser());
-        }
-
-        return browsers;
-    }
-
-    // Exclusive to Admin
-    public static Map<String, Integer> FetchAllBrowserData(){
-        ArrayList<String> log = new ArrayList<>();
-        Map<String, Integer> browsers = new HashMap<>();
-
-        List<InfoLog> archives = FetchAllData();
-
-        for (InfoLog data:
-                archives) {
-            if(!IsDataIncluded(data.getBrowser(), log)){
-                log.add(data.getBrowser());
-                browsers.put(data.getBrowser(), 1);
-            }
-            else{
-                Integer bubble = browsers.remove(data.getBrowser());
-
-                browsers.put(data.getBrowser(), bubble + 1);
-            }
         }
 
         return browsers;
@@ -423,5 +409,28 @@ public class DatabaseManager {
         ArrayList<Date> legend = new ArrayList<>();
 
         return map.keySet();
+    }
+
+    public static Map<String, Float> FetchURLDatabyBrowser(String url){
+
+        ArrayList<String> log = FetchAllBrowser();
+        Map<String, Float> browsers = new HashMap<>();
+
+        Float count = 0f;
+
+        for (String browser:
+             log) {
+            Float bubble = 1f * InfoLogORMService.HowManyTimesUsedByBrowser(url, browser);
+            count += bubble;
+            browsers.put(browser, bubble);
+        }
+
+        for (String browser:
+                log) {
+            Float bubble = browsers.remove(browser);
+            browsers.put(browser, (bubble / count) * 100);
+        }
+
+        return browsers;
     }
 }
