@@ -29,11 +29,16 @@
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/p/${url.getShortURL()}/stats">
                             VIEW STATS
                         </a>
+                        <form action="" METHOD="POST">
+                                <input type="hidden" name="url" id="url" value="${url.getShortURL()}">
+                                <input class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit" value="DELETE">
+                        </form>
                     </div>
                     <div class="mdl-card__menu">
                         <a href="javascript:fbShare('www.acorta.do/${url.getShortURL()}', 'Fb Share', 'Facebook share popup', 'https://www.colourbox.com/preview/2375712-vector-icon-of-scissors-all-layers-are-grouped.jpg', 520, 350)" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                             <i class="material-icons">share</i>
                         </a>
+
 
                     </div>
                 </div>

@@ -213,6 +213,14 @@ public class pageCreator {
             return username;
         });
 
+        post("/viewall", (request, response) -> {
+
+            String shortURL = request.queryParams("url");
+            DatabaseManager.DeleteShortURL(shortURL);
+            response.redirect("/viewall");
+            return "omg";
+        });
+
 
 
         post("/register", (request, response) -> {

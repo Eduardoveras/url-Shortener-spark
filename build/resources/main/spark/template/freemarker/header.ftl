@@ -37,7 +37,7 @@
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         function fbShare(url, title, descr, image, winWidth, winHeight) {
             var winTop = (screen.height / 2) - (winHeight / 2);
