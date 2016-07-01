@@ -62,8 +62,6 @@ public class DatabaseManager {
         else
             System.out.println("\nURL Database already configured!\n");
 
-        DeleteShortURL("a2fafd21");
-
         // Browsers
         Map<String, Float> browsers = FetchURLDataByBrowser("a613c7b3");
 
