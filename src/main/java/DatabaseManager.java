@@ -281,10 +281,12 @@ public class DatabaseManager {
 
             List<URL> urls = FetchAllURLForUser(username);
 
+            if(urls.size() > 0)
             for (URL u:
                  urls) {
                 List<InfoLog> info = InfoLogORMService.FindShortURLInstance(u.getShortURL());
 
+                if(info.size() > 0)
                 for (InfoLog toBeDeleted:
                      info) {
                     InfoLogORMService.GetInstance().Delete(toBeDeleted);
@@ -330,6 +332,7 @@ public class DatabaseManager {
 
             List<InfoLog> log = InfoLogORMService.FindShortURLInstance(shortURL);
 
+            if(log.size() > 0)
             for (InfoLog i:
                  log) {
                 InfoLogORMService.GetInstance().Delete(i);
