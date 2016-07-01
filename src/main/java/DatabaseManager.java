@@ -73,7 +73,7 @@ public class DatabaseManager {
         }
 
         System.out.println("\n\n");
-        // Browsers
+        // OS
         browsers = FetchURLDataByOS("a613c7b3");
 
         log = FetchAllOS();
@@ -83,6 +83,16 @@ public class DatabaseManager {
             System.out.println(b + ": " + browsers.get(b).toString() + "%");
         }
 
+        System.out.println("\n\n");
+        // Countries
+        browsers = FetchURLDataByCountry("a613c7b3");
+
+        log = FetchAllCountries();
+
+        for (String b:
+                log) {
+            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        }
     }
 
     /*
@@ -414,12 +424,35 @@ public class DatabaseManager {
             OS.put(os, bubble);
         }
 
-        for (String browser:
+        for (String os:
                 log) {
-            Float bubble = OS.remove(browser);
-            OS.put(browser, (bubble / count) * 100);
+            Float bubble = OS.remove(os);
+            OS.put(os, (bubble / count) * 100);
         }
 
         return OS;
+    }
+
+    public static Map<String, Float> FetchURLDataByCountry(String url){
+
+        ArrayList<String> log = FetchAllCountries();
+        Map<String, Float> countries = new HashMap<>();
+
+        Float count = 0f;
+
+        for (String country:
+                log) {
+            Float bubble = 1f * InfoLogORMService.HowManyTimesUsedByCountry(url, country);
+            count += bubble;
+            countries.put(country, bubble);
+        }
+
+        for (String country:
+                log) {
+            Float bubble = countries.remove(country);
+            countries.put(country, (bubble / count) * 100);
+        }
+
+        return countries;
     }
 }
