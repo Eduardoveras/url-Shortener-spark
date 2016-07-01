@@ -121,6 +121,12 @@ public class pageCreator {
             String QrUrl = ResourceFetcher.getQrCodeURL(DatabaseManager.FetchOriginalURL(urlid));
             attributes.put("QrUrl",QrUrl);
 
+            attributes.put("allBrowsers",DatabaseManager.FetchAllBrowser());
+            attributes.put("allOs",DatabaseManager.FetchAllOS());
+            attributes.put("allCountries",DatabaseManager.FetchAllCountries());
+
+
+
 
             Map<java.sql.Date, Integer> data = DatabaseManager.FetchURLDataByDate(urlid);
             Set<java.sql.Date> legend = DatabaseManager.ShowDateMapLegend(data);

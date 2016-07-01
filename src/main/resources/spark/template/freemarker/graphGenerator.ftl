@@ -3,6 +3,7 @@
     //google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     google.charts.setOnLoadCallback(drawRegionsMap);
+    google.charts.setOnLoadCallback(drawPie);
 
     function drawRegionsMap() {
 
@@ -12,7 +13,7 @@
         ]);
 
         var options = {
-            backgroundColor: '#81d4fa'
+            backgroundColor: '#663399'
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -47,5 +48,26 @@
 
         chart.draw(data, options);
         chart2.draw(data, options);
+    }
+
+
+    function drawPie() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Work',     11],
+            ['Eat',      2],
+            ['Commute',  2],
+            ['Watch TV', 2],
+            ['Sleep',    7]
+        ]);
+
+        var options = {
+            title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
     }
 </script>
