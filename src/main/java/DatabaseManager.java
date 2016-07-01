@@ -62,6 +62,8 @@ public class DatabaseManager {
         else
             System.out.println("\nURL Database already configured!\n");
 
+        DeleteShortURL("a2fafd21");
+
         // Browsers
         Map<String, Float> browsers = FetchURLDataByBrowser("a613c7b3");
 
@@ -315,6 +317,13 @@ public class DatabaseManager {
     public static boolean DeleteShortURL(String shortURL){
 
         try{
+
+            List<InfoLog> log = InfoLogORMService.FindShortURLInstance(shortURL);
+
+            for (InfoLog i:
+                 log) {
+                InfoLogORMService.GetInstance().Delete(i);
+            }
 
             URLORMService.GetInstance().Delete(URLORMService.GetInstance().Find(shortURL));
             return true;
