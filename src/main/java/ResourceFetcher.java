@@ -1,3 +1,8 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+
 public class ResourceFetcher {
 
     public static String getDescription(String url) {
@@ -14,20 +19,26 @@ public class ResourceFetcher {
     }
 
 
-    public static String json_to_java(String ip){
+    public static String json_to_java(String ip)  {
 
-       String country_code = "http://ipinfo.io/"+ ip +"/country";
+        String URL = "http://ipinfo.io/"+ ip +"/country";
 
-
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(URL).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String country_code = doc.data();
         return country_code;
     }
 
-    public static String flag(String ip) {
+    //public static String flag(String ip) {
 
-        String link_flag= "https://ipfind.co/flags?ip="+ip+"&auth=d9cec36e-01af-4d43-9452-e5cb08eab33e";
+    //    String link_flag= "https://ipfind.co/flags?ip="+ip+"&auth=d9cec36e-01af-4d43-9452-e5cb08eab33e";
 
-        return link_flag;
-    }
+    //    return link_flag;
+    //}
     //public static String getCountryFromIP(String ip) return "Dom Rep";
 
 
