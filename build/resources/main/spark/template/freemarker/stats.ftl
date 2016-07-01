@@ -11,7 +11,7 @@
         <div class="mdl-grid demo-content">
             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 
-                <div id="regions_div" ></div>
+
             </div>
             <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
                 <div id="curve_chart"></div>
@@ -29,9 +29,7 @@
                 <div class="demo-separator mdl-cell--1-col"></div>
                 <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
                     <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-                        <div id="regions_div"></div>
-
-
+                        <div id="regions_div" ></div>
                     </div>
 
                 </div>
