@@ -256,7 +256,18 @@ public class pageCreator {
 
         post("/users", (request, response) -> {
             String username = request.queryParams("username");
-            DatabaseManager.MakeAdmin(username);
+            String kind = request.queryParams("kind");
+            if (kind.equals("delete"))
+            {
+                DatabaseManager.DeleteUserAccount(username);
+            }
+            else if (kind.equals("admin"))
+            {
+                DatabaseManager.MakeAdmin(username);
+            }
+            else
+                System.out.println("SOME WHIT WENT SERIOUSLY WRONG....");
+
             response.redirect("/users");
             return username;
         });

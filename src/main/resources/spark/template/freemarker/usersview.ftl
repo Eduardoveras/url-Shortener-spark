@@ -39,6 +39,7 @@
                             </button>
                         <#else >
                             <form action="" METHOD="POST">
+                                <input type="hidden" name="kind" id="kind" value="admin">
                                 <input type="hidden" name="username" id="username" value="${theUser.getUsername()}">
                                 <#if theUser.isAdmin()>
                                     <input class="mdl-button mdl-js-button" type="submit" value="Revoke Admin">
@@ -55,6 +56,7 @@
                             </button>
                         <#else >
                             <form action="" METHOD="POST">
+                                <input type="hidden" name="kind" id="kind" value="delete">
                                 <input type="hidden" name="username" id="username" value="${theUser.getUsername()}">
                                 <input class="mdl-button mdl-js-button" type="submit" value="Delete">
                             </form>
