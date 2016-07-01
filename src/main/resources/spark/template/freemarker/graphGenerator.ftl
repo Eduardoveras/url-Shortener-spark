@@ -69,8 +69,7 @@
         ]);
 
         var options = {
-            title: 'Operating System usage',
-            legend: 'none'
+            title: 'Operating System usage'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('theOsGraph'));
@@ -92,8 +91,7 @@
         ]);
 
         var options = {
-            title: 'Browser Usage',
-            legend: 'none'
+            title: 'Browser Usage'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('theBrowserGraph'));
@@ -115,8 +113,7 @@
         ]);
 
         var options = {
-            title: 'Countries visits',
-            legend: 'none'
+            title: 'Countries visits'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('theCountryGraph'));
