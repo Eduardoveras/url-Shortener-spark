@@ -3,7 +3,11 @@
     //google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     google.charts.setOnLoadCallback(drawRegionsMap);
-    google.charts.setOnLoadCallback(drawPie);
+    google.charts.setOnLoadCallback(drawBrowsers);
+    google.charts.setOnLoadCallback(drawCountries);
+    google.charts.setOnLoadCallback(drawOs);
+
+
 
     function drawRegionsMap() {
 
@@ -51,22 +55,68 @@
     }
 
 
-    function drawPie() {
+    function drawOs() {
 
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
-            ['Work',     11],
-            ['Eat',      2],
-            ['Commute',  2],
-            ['Watch TV', 2],
-            ['Sleep',    7]
+        <#list allOs as item>
+            <#if item?is_last>
+                    [${item}]
+            <#else>
+                    [${item}],
+            </#if>
+        </#list>
         ]);
 
         var options = {
             title: 'My Daily Activities'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('theOsGraph'));
+
+        chart.draw(data, options);
+    }
+
+    function drawBrowsers() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+        <#list allBrowsers as item>
+            <#if item?is_last>
+                    [${item}]
+            <#else>
+                    [${item}],
+            </#if>
+        </#list>
+        ]);
+
+        var options = {
+            title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('theBrowserGraph'));
+
+        chart.draw(data, options);
+    }
+
+    function drawCountries() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+        <#list allCountries as item>
+            <#if item?is_last>
+                    [${item}]
+            <#else>
+                    [${item}],
+            </#if>
+        </#list>
+        ]);
+
+        var options = {
+            title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('theCountryGraph'));
 
         chart.draw(data, options);
     }

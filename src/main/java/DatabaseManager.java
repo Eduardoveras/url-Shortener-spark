@@ -6,6 +6,7 @@
 import Entity.*;
 import Service.*;
 import org.h2.tools.Server;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 import javax.persistence.PersistenceException;
 import java.sql.*;
@@ -62,37 +63,60 @@ public class DatabaseManager {
         else
             System.out.println("\nURL Database already configured!\n");
 
-        // Browsers
-        Map<String, Float> browsers = FetchURLDataByBrowser("a613c7b3");
-
-        ArrayList<String> log = FetchAllBrowser();
-
-        for (String b:
-             log) {
-            System.out.println(b + ": " + browsers.get(b).toString() + "%");
-        }
-
-        System.out.println("\n\n");
         // OS
-        browsers = FetchURLDataByOS("a613c7b3");
+
+        // Countries
+
+    }
+
+
+    public static ArrayList<String> getOsPercentString(String ShortUrl)
+    {
+        Map<String, Float> browsers = FetchURLDataByBrowser(ShortUrl);
+        ArrayList<String> log = FetchAllOS();
+
+        browsers = FetchURLDataByOS(ShortUrl);
 
         log = FetchAllOS();
-
-        for (String b:
-                log) {
-            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        ArrayList<String> theShit= new ArrayList<>();
+        for (String b: log) {
+            theShit.add("'"+b+"'"+ ", " + browsers.get(b).toString() );
+            System.out.println("'"+b+"'"+ ", " + browsers.get(b).toString() );
         }
+        return theShit;
 
-        System.out.println("\n\n");
-        // Countries
-        browsers = FetchURLDataByCountry("a613c7b3");
+    }
+
+
+    public static ArrayList<String> getBrowserPercentString(String ShortUrl)
+    {
+        Map<String, Float> browsers = FetchURLDataByBrowser(ShortUrl);
+        ArrayList<String> log = FetchAllBrowser();
+
+        ArrayList<String> theShit= new ArrayList<>();
+        for (String b: log) {
+            System.out.println("'"+b+"'"+ ", " + browsers.get(b).toString() );
+            theShit.add("'"+b+"'"+ ", " + browsers.get(b).toString());
+        }
+        return theShit;
+
+    }
+    public static ArrayList<String> getCountryPercentString(String ShortUrl)
+    {
+        Map<String, Float> browsers = FetchURLDataByBrowser(ShortUrl);
+        ArrayList<String> log = FetchAllCountries();
+
+        browsers = FetchURLDataByCountry(ShortUrl);
 
         log = FetchAllCountries();
+        ArrayList<String> theShit= new ArrayList<>();
 
-        for (String b:
-                log) {
-            System.out.println(b + ": " + browsers.get(b).toString() + "%");
+        for (String b: log) {
+            System.out.println("'"+b+"'"+ ", " + browsers.get(b).toString());
+            theShit.add("'"+b+"'"+ ", " + browsers.get(b).toString());
         }
+        return theShit;
+
     }
 
     /*

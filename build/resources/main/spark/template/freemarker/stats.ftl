@@ -10,7 +10,9 @@
 
         <div class="mdl-grid demo-content">
             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <div id="piechart"></div>
+                <div id="theCountryGraph"></div>
+                <div id="theBrowserGraph"></div>
+                <div id="theOsGraph"></div>
 
 
             </div>
