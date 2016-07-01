@@ -13,7 +13,13 @@
 
         var data = google.visualization.arrayToDataTable([
             ['Country', 'Popularity'],
-            ['DO', 2]
+        <#list allCountries as item>
+            <#if item?is_last>
+                    [${item}]
+            <#else>
+                    [${item}],
+            </#if>
+        </#list>
         ]);
 
         var options = {
@@ -69,7 +75,10 @@
         ]);
 
         var options = {
-            title: 'Operating System usage'
+            title: 'Operating System usage',
+            'width':300,
+            'height':300,
+            legend: 'none'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('theOsGraph'));
@@ -91,7 +100,10 @@
         ]);
 
         var options = {
-            title: 'Browser Usage'
+            title: 'Browser Usage',
+            'width':300,
+            'height':300,
+            legend: 'none'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('theBrowserGraph'));
@@ -113,7 +125,10 @@
         ]);
 
         var options = {
-            title: 'Countries visits'
+            title: 'Countries visits',
+            'width':300,
+            'height':300,
+            legend: 'none'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('theCountryGraph'));

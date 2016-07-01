@@ -128,9 +128,6 @@ public class pageCreator {
             attributes.put("allOs",allOs);
             attributes.put("allCountries",allCount);
 
-
-
-
             Map<java.sql.Date, Integer> data = DatabaseManager.FetchURLDataByDate(urlid);
             Set<java.sql.Date> legend = DatabaseManager.ShowDateMapLegend(data);
             DateFormat df = new SimpleDateFormat("yyyy,MM,dd");
