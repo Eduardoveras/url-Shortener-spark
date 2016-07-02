@@ -24,7 +24,6 @@ jar {
         exclude 'META-INF/*.RSA'
     }
 }
-task stage(dependsOn: ['clean', 'installApp'])
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.6'
