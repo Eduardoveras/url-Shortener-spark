@@ -1,21 +1,18 @@
 group 'org.evapps.thegroup'
-version '1.0-SNAPSHOT'
-
-
-apply plugin: 'java'
+version '1.0'
 
 sourceCompatibility = 1.8
 
-
-
 apply plugin: 'java'
-//apply plugin: 'jetty'
+apply plugin: 'jetty'
 apply plugin: 'application'
 
+archivesBaseName = "todo"
 mainClassName = 'Main'
 applicationName = 'app'
 
-defaultTasks = ['clean', 'jar']
+defaultTasks = ['clean']
+task stage(dependsOn: ['clean', 'installApp'])
 
 jar {
     manifest {
