@@ -1,1 +1,1 @@
-web: ./build/install/todo/bin/app
+web: build/install/URLshort/bin/URLshort
