@@ -1,1 +1,1 @@
-web: build/install/URLshort/bin/URLshort
+web: build/install/app/bin/app

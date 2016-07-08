@@ -6,7 +6,7 @@ apply plugin: 'jetty'
 apply plugin: 'application'
 
 archivesBaseName = "app"
-mainClassName = 'Main'
+mainClassName = 'Service.Main'
 applicationName = 'app'
 
 defaultTasks = ['clean']
