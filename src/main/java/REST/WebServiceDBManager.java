@@ -369,6 +369,7 @@ public class WebServiceDBManager {
 
         try{
 
+            System.out.println("\n\nFetching a URL via Web Service...");
             URL shURL = URLORMService.GetInstance().Find(shortURL);
             return shURL.getOriginalURL();
         } catch (Exception exp){

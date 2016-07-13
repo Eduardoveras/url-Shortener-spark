@@ -9,12 +9,14 @@ public class Authentication {
     private final long id;
     private final boolean verified;
 
+    // Constructure
     public Authentication(long id, boolean verified){
 
         this.id = id;
         this.verified = verified;
     }
 
+    // Getters
     public long getId() {
         return id;
     }

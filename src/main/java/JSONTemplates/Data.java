@@ -1,23 +1,29 @@
 /**
- * Created by Siclait on 12/7/16.
+ * Created by Siclait on 13/7/16.
  */
 package JSONTemplates;
 
-public class Greeting {
+public class Data {
 
     // Attributes
     private final long id;
-    private final String content;
+    private final String type;
+    private final  String content;
 
     // Constructor
-    public Greeting(long id, String content){
+    public Data(long id, String type, String content){
+
         this.id = id;
+        this.type = type;
         this.content = content;
     }
 
-    // Getters
     public long getId() {
         return id;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getContent() {

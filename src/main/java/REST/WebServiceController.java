@@ -60,4 +60,11 @@ public class WebServiceController {
         return new Authentication(counter.incrementAndGet(), WebServiceDBManager.CreateNewShortURL(original, username, browser, OS, ip, longitude, latitude));
     }
 
+    @RequestMapping("/ws/fetchOriginal")
+    public void FetchOriginal(){
+
+        System.out.println("\n\nFetching an original URL...");
+
+    }
+
 }
