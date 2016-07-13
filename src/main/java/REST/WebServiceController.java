@@ -3,8 +3,6 @@
  */
 package REST;
 
-import
-
 import JSONTemplates.Authentication;
 import JSONTemplates.Greeting;
 
@@ -30,7 +28,7 @@ public class WebServiceController {
 
     public Authentication Authenticate(@RequestParam() String username, @RequestParam() String password){
 
-        WebServiceDBManager.CheckUserCredentials();
+        //WebServiceDBManager.CheckUserCredentials();
 
         return new Authentication(counter.incrementAndGet(), false);
     }

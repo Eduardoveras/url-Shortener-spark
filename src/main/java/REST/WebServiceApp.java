@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WebServiceApp {
 
     public static void main(String[] args){
+
+        WebServiceDBManager.BootDataBase();
+
         System.out.println("Attempting to run Acorta.do...");
         SpringApplication.run(WebServiceApp.class, args);
         System.out.println("Success!");
