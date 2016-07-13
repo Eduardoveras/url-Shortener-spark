@@ -61,5 +61,7 @@
     </main>
 </div>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlk5Vi0hbljWFCIimhVhJPQnjis0JGARQ&signed_in=true&callback=initMap"
+        async defer>
+</script>
 </body>
