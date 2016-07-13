@@ -29,6 +29,8 @@
                                                                 role="presentation">assignment</i>Instructions</a>
         <a class="mdl-navigation__link" href="/viewall"><i class="mdl-color-text--blue-grey-400 material-icons"
                                                            role="presentation">list</i>ViewAll</a>
+        <a class="mdl-navigation__link" href="/map"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                       role="presentation">map</i>View Map</a>
     <#else>
         <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--blue-grey-400 material-icons"
                                                     role="presentation">home</i>Home</a>
@@ -38,6 +40,8 @@
                                                             role="presentation">person_add</i>Register</a>
         <a class="mdl-navigation__link" href="/instructions"><i class="mdl-color-text--blue-grey-400 material-icons"
                                                                 role="presentation">assignment</i>Instructions</a>
+        <a class="mdl-navigation__link" href="/map"><i class="mdl-color-text--blue-grey-400 material-icons"
+                                                                role="presentation">map</i>View Map</a>
     </#if>
         <div class="mdl-layout-spacer"></div>
         <a class="mdl-navigation__link" href="https://github.com/Eduardoveras94/url-Shortener-spark"><i

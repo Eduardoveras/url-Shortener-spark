@@ -53,10 +53,10 @@ public class DatabaseManager {
         {
             System.out.println("Registering admin urls");
 
-            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), ResourceFetcher.getDescription("http://facebook.com"), ResourceFetcher.getQrCodeURL("http://facebook.com")));
-            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), ResourceFetcher.getDescription("http://fb.com"), ResourceFetcher.getQrCodeURL("http://fb.com")));
-            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), ResourceFetcher.getDescription("http://youtube.com"), ResourceFetcher.getQrCodeURL("http://youtube.com")));
-            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), ResourceFetcher.getDescription("http://wikipedia.com"), ResourceFetcher.getQrCodeURL("http://wikipedia.com")));
+            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), ResourceFetcher.getDescription("http://facebook.com"), ResourceFetcher.getQrCodeURL("http://facebook.com"), "57.5", "-122.5"));
+            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), ResourceFetcher.getDescription("http://fb.com"), ResourceFetcher.getQrCodeURL("http://fb.com"), "37.5", "100.5"));
+            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), ResourceFetcher.getDescription("http://youtube.com"), ResourceFetcher.getQrCodeURL("http://youtube.com"), "45.5", "-12.5"));
+            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), ResourceFetcher.getDescription("http://wikipedia.com"), ResourceFetcher.getQrCodeURL("http://wikipedia.com"), "137.5", "12.5"));
 
             System.out.println("Success!");
         }
@@ -328,7 +328,7 @@ public class DatabaseManager {
     // TODO: Add change user password function
 
     // URL Related Functions
-    public static boolean CreateNewShortURL(String original, String username, String browser, String OS, String ip){
+    public static boolean CreateNewShortURL(String original, String username, String browser, String OS, String ip, String longitude, String latitude){
 
         try{
 
@@ -337,7 +337,7 @@ public class DatabaseManager {
                 return false;
             }
 
-            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), ResourceFetcher.getDescription(original), ResourceFetcher.getQrCodeURL(original)));
+            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), ResourceFetcher.getDescription(original), ResourceFetcher.getQrCodeURL(original), latitude, longitude));
 
         } catch (PersistenceException exp){
             System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");
