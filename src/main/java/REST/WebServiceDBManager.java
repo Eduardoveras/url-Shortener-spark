@@ -284,7 +284,7 @@ public class WebServiceDBManager {
     public static boolean CreateNewUser(String username, String firstName, String lastName, String password){
 
         try {
-
+            System.out.println("\n\nRegistering via Web Service");
             UserORMService.GetInstance().Create(new User(username, firstName, lastName, password, false));
             return true;
         } catch (PersistenceException exp){
