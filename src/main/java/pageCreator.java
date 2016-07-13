@@ -5,14 +5,11 @@ import Entity.URL;
 import Entity.User;
 import eu.bitwalker.useragentutils.UserAgent;
 import spark.ModelAndView;
-import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 import static spark.Spark.*;
 
@@ -63,7 +60,7 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("message", "Welcome");
             attributes.put("pagename","Home");
-            attributes.put("user",DatabaseManager.FetchUser(current_username));
+            attributes.put("user", DatabaseManager.FetchUser(current_username));
             List<URL> urls = DatabaseManager.FetchAllURLForUser(current_username);
             attributes.put("urls",urls);
 

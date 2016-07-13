@@ -1,7 +1,7 @@
 /**
- * Created by Eduardo veras on 19-Jun-16.
- * Edited by Siclait on 19-Jun-16
+ * Created by Siclait on 12/7/16.
  */
+package REST;
 
 import Entity.*;
 import Service.*;
@@ -12,10 +12,10 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-public class DatabaseManager {
+public class WebServiceDBManager {
 
     // Singleton Constructor
-    private DatabaseManager(){
+    private WebServiceDBManager(){
 
     }
 
@@ -33,7 +33,7 @@ public class DatabaseManager {
 
         if(users.size() == 0)
         {
-            System.out.println("\n\nCreating Admins ...");
+            System.out.println("\n\nCreating Admins via REST Web Service...");
 
             UserORMService.GetInstance().Create(new User("admin", "Administrator", "The", "admin", true));
             UserORMService.GetInstance().Create(new User("Wardo", "Eduardo", "Veras", "1234", true));
@@ -41,7 +41,7 @@ public class DatabaseManager {
             UserORMService.GetInstance().Create(new User("Djsiclait", "Djidjelly", "Siclait", "1234", true));
             UserORMService.GetInstance().Create(new User("guest", "guest", "guest", "", false));
 
-            System.out.println("Admins created successfully!\n");
+            System.out.println("REST Admins created successfully!\n");
         }
         else
             System.out.println("\n\nUser Database already configured!\n");
@@ -52,19 +52,15 @@ public class DatabaseManager {
         {
             System.out.println("Registering admin urls");
 
-            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), ResourceFetcher.getDescription("http://facebook.com"), ResourceFetcher.getQrCodeURL("http://facebook.com"), "57.5", "-122.5"));
-            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), ResourceFetcher.getDescription("http://fb.com"), ResourceFetcher.getQrCodeURL("http://fb.com"), "37.5", "100.5"));
-            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), ResourceFetcher.getDescription("http://youtube.com"), ResourceFetcher.getQrCodeURL("http://youtube.com"), "45.5", "-12.5"));
-            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), ResourceFetcher.getDescription("http://wikipedia.com"), ResourceFetcher.getQrCodeURL("http://wikipedia.com"), "137.5", "12.5"));
+            URLORMService.GetInstance().Create(new URL("http://facebook.com", FetchUser("admin"), WebServiceResourceFetcher.getDescription("http://facebook.com"), WebServiceResourceFetcher.getQrCodeURL("http://facebook.com"), "57.5", "-122.5"));
+            URLORMService.GetInstance().Create(new URL("http://fb.com", FetchUser("admin"), WebServiceResourceFetcher.getDescription("http://fb.com"), WebServiceResourceFetcher.getQrCodeURL("http://fb.com"), "37.5", "100.5"));
+            URLORMService.GetInstance().Create(new URL("http://youtube.com", FetchUser("admin"), WebServiceResourceFetcher.getDescription("http://youtube.com"), WebServiceResourceFetcher.getQrCodeURL("http://youtube.com"), "45.5", "-12.5"));
+            URLORMService.GetInstance().Create(new URL("http://wikipedia.com", FetchUser("admin"), WebServiceResourceFetcher.getDescription("http://wikipedia.com"), WebServiceResourceFetcher.getQrCodeURL("http://wikipedia.com"), "137.5", "12.5"));
 
             System.out.println("Success!");
         }
         else
             System.out.println("\nURL Database already configured!\n");
-
-        // OS
-
-        // Countries
 
     }
 
@@ -149,7 +145,7 @@ public class DatabaseManager {
         List<URL> urls = FetchAllURLForUser(username);
 
         for (URL url:
-             urls) {
+                urls) {
             if(url.getOriginalURL().equals(originalURL))
                 return true;
         }
@@ -212,7 +208,7 @@ public class DatabaseManager {
             return false;
 
         for (String d:
-             dataList) {
+                dataList) {
             if(data.equals(d))
                 return true;
         }
@@ -226,7 +222,7 @@ public class DatabaseManager {
         List<InfoLog> archives = FetchAllData();
 
         for (InfoLog data:
-             archives) {
+                archives) {
             if(!IsDataIncluded(data.getCountry(), countries))
                 countries.add(data.getCountry());
         }
@@ -305,16 +301,16 @@ public class DatabaseManager {
             List<URL> urls = FetchAllURLForUser(username);
 
             if(urls.size() > 0)
-            for (URL u:
-                 urls) {
-                List<InfoLog> info = InfoLogORMService.FindShortURLInstance(u.getShortURL());
+                for (URL u:
+                        urls) {
+                    List<InfoLog> info = InfoLogORMService.FindShortURLInstance(u.getShortURL());
 
-                if(info.size() > 0)
-                for (InfoLog toBeDeleted:
-                     info) {
-                    InfoLogORMService.GetInstance().Delete(toBeDeleted);
+                    if(info.size() > 0)
+                        for (InfoLog toBeDeleted:
+                                info) {
+                            InfoLogORMService.GetInstance().Delete(toBeDeleted);
+                        }
                 }
-            }
 
             UserORMService.GetInstance().Delete(UserORMService.GetInstance().Find(username));
             return true;
@@ -336,14 +332,14 @@ public class DatabaseManager {
                 return false;
             }
 
-            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), ResourceFetcher.getDescription(original), ResourceFetcher.getQrCodeURL(original), latitude, longitude));
+            URLORMService.GetInstance().Create(new URL(original, UserORMService.GetInstance().Find(username), WebServiceResourceFetcher.getDescription(original), WebServiceResourceFetcher.getQrCodeURL(original), latitude, longitude));
 
         } catch (PersistenceException exp){
             System.out.println("\n\nShort URL is already created: Possible Algorithm ERROR!\n");
             return false;
         } finally{
 
-            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, "Dominican Republic"/* ResourceFetcher.json_to_java(ip) */))
+            if(CompileInfoLogData(FetchShortURL(original, username), browser, OS, "Dominican Republic"/* WebServiceResourceFetcher.json_to_java(ip) */))
                 System.out.println("\n\nInfoLog Updated Successfully!\n");
             return true;
         }
@@ -356,10 +352,10 @@ public class DatabaseManager {
             List<InfoLog> log = InfoLogORMService.FindShortURLInstance(shortURL);
 
             if(log.size() > 0)
-            for (InfoLog i:
-                 log) {
-                InfoLogORMService.GetInstance().Delete(i);
-            }
+                for (InfoLog i:
+                        log) {
+                    InfoLogORMService.GetInstance().Delete(i);
+                }
 
             URLORMService.GetInstance().Delete(URLORMService.GetInstance().Find(shortURL));
             return true;
@@ -440,7 +436,7 @@ public class DatabaseManager {
         Float count = 0f;
 
         for (String browser:
-             log) {
+                log) {
             Float bubble = 1f * InfoLogORMService.HowManyTimesUsedByBrowser(url, browser);
             count += bubble;
             browsers.put(browser, bubble);
@@ -500,4 +496,5 @@ public class DatabaseManager {
 
         return countries;
     }
+
 }
