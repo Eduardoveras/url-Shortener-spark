@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.boot:spring-boot-starter-test:">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Could not find org.springframework.boot:spring-boot-starter-test:.&#13;&#10;Searched in the following locations:&#13;&#10;    https:/repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-test/spring-boot-starter-test-.pom&#13;&#10;    https:/repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-test/spring-boot-starter-test-.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -12,7 +12,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-
 @RestController
 public class WebServiceController {
 
