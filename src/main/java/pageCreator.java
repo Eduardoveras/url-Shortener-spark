@@ -90,6 +90,17 @@ public class pageCreator {
         }, new FreeMarkerEngine());
 
 
+        get("/map", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
+            attributes.put("pagename","Map view");
+            attributes.put("message", "Welcome");
+            ArrayList<String> allCount = DatabaseManager.FetchAllCountries();
+
+            attributes.put("allCountries",allCount);
+            return new ModelAndView(attributes, "map.ftl");
+        }, new FreeMarkerEngine());
+
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("user",DatabaseManager.FetchUser(current_username));
