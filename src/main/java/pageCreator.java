@@ -95,7 +95,7 @@ public class pageCreator {
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Map view");
             attributes.put("message", "Welcome");
-            ArrayList<String> allCount = DatabaseManager.FetchAllCountries();
+            List<URL> allCount = DatabaseManager.FetchAllURL();
 
             attributes.put("allCountries",allCount);
             return new ModelAndView(attributes, "map.ftl");
