@@ -208,8 +208,11 @@ public class pageCreator {
         post("/", (request, response) -> {
             String URL = request.queryParams("URL");
             String username = request.queryParams("username");
+            String latitude = request.queryParams("lat");
+            String longitude = request.queryParams("lng");
+
             UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
-            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(),"Dominican Republic", "37.5", "-122.5");
+            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(),"Dominican Republic", latitude, longitude);
             response.redirect("/");
             return username;
         });

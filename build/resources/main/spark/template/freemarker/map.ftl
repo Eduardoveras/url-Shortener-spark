@@ -42,7 +42,7 @@
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                        data.addRow([pos.lat,pos.lng,'Your Location']);
+                        //data.addRow([pos.lat,pos.lng,'Your Location']);
                         map.draw(data, options);
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
@@ -61,5 +61,7 @@
     </main>
 </div>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlk5Vi0hbljWFCIimhVhJPQnjis0JGARQ&signed_in=true&callback=initMap"
+        async defer>
+</script>
 </body>

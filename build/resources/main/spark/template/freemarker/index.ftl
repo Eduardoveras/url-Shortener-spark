@@ -28,6 +28,8 @@
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
                             <input type="hidden" name="username" id="username" value="${user.getUsername()}">
+                            <input type="hidden" name="lat" id="lat" value="">
+                            <input type="hidden" name="lng" id="lng" value="">
                             <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                                    type="submit" value="MAKE SHORT">
                         </div>
@@ -45,18 +47,21 @@
                         <img class="image-pefect" src="${url.getPreviewURL()}"/>
                     </div>
                     <div class="mdl-card__title mdl-card--expand">
-                        <a href="/p/${url.getShortURL()}" > <h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a>
+                        <a href="/p/${url.getShortURL()}"><h2 class="mdl-card__title-text">
+                            www.acorta.do/${url.getShortURL()}</h2></a>
                     </div>
                     <div class="mdl-card__supporting-text">
-                    Directs to: ${url.getOriginalURL()}
+                        Directs to: ${url.getOriginalURL()}
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/p/${url.getShortURL()}/stats">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="/p/${url.getShortURL()}/stats">
                             VIEW STATS
                         </a>
                     </div>
                     <div class="mdl-card__menu">
-                        <a href="javascript:fbShare('www.acorta.do/${url.getShortURL()}', 'Fb Share', 'Facebook share popup', 'https://www.colourbox.com/preview/2375712-vector-icon-of-scissors-all-layers-are-grouped.jpg', 520, 350)" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <a href="javascript:fbShare('www.acorta.do/${url.getShortURL()}', 'Fb Share', 'Facebook share popup', 'https://www.colourbox.com/preview/2375712-vector-icon-of-scissors-all-layers-are-grouped.jpg', 520, 350)"
+                           class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                             <i class="material-icons">share</i>
                         </a>
 
@@ -68,9 +73,29 @@
         </#list>
 
 
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            <script>
+                var pos = {
+                    lat: -34.397,
+                    lng: 150.644
+                };
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        $('#lat').val(pos.lat);
+                        $('#lng').val(pos.lng);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
 
-
-
+            </script>
 
 
         </div>

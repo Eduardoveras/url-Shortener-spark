@@ -42,7 +42,7 @@
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                        data.addRow([pos.lat,pos.lng,'Your Location']);
+                        //data.addRow([pos.lat,pos.lng,'Your Location']);
                         map.draw(data, options);
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
