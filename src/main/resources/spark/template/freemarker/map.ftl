@@ -10,23 +10,33 @@
 
     <main class="mdl-layout__content mdl-color--grey-100">
         <div id="chart_div" style="height: 727px;"></div>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script>
             google.charts.load('current', { 'packages': ['map'] });
             google.charts.setOnLoadCallback(drawMap);
 
             function drawMap() {
+                var pos = {
+                    lat: -34.397,
+                    lng: 150.644
+                };
+
+
+
                 var data = google.visualization.arrayToDataTable([
-                    ['Country', 'Population'],
+                    ['Lat', 'Long', 'Name'],
                     <#list allCountries as item>
                         <#if item?is_last>
-                                ['${item}',1]
+                                [pos.lat,pos.lng,1]
                         <#else>
-                                ['${item}',1],
+                                [pos.lat,pos.lng,1],
                         </#if>
                     </#list>
                 ]);
+
+                var options = { showTip: true };
+
+                var map = new google.visualization.Map(document.getElementById('chart_div'));
 //STUFFF DONT TOUCH
 
                 if (navigator.geolocation) {
@@ -35,10 +45,8 @@
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent('Location found.');
-                        map.setCenter(pos);
+                        data.addRow([pos.lat,pos.lng,1]);
+                        map.draw(data, options);
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
@@ -52,11 +60,9 @@
 
 
 
-                var options = { showTip: true };
 
-                var map = new google.visualization.Map(document.getElementById('chart_div'));
 
-                map.draw(data, options);
+
             };
         </script>
 
