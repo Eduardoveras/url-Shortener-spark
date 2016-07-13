@@ -27,6 +27,12 @@ public class URL implements Serializable {
     @Column(name = "QRURL")
     private String qrURL;
 
+    @Column(name = "LATITUDE")
+    private String latitude;
+
+    @Column(name = "LONGITUDE")
+    private String longitude;
+
     @ManyToOne  // @Column not allowed in many to one relationship
     private User user;
 
@@ -35,23 +41,27 @@ public class URL implements Serializable {
 
     }
 
-    public URL(String originalURL, User user, String previewURL, String qrURL) {
+    public URL(String originalURL, User user, String previewURL, String qrURL, String longitude, String latitude) {
 
         this.setOriginalURL(originalURL);
         this.setShortURL(UUID.randomUUID().toString().split("-")[0]);
         this.setUser(user);
         this.setPreviewURL(previewURL);
         this.setQrURL(qrURL);
+        this.setLongitude(longitude);
+        this.setLatitude(latitude);
 
     }
 
-    public URL(String shortURL, String originalURL, User user, String previewURL, String qrURL) {
+    public URL(String shortURL, String originalURL, User user, String previewURL, String qrURL, String longitude, String latitude) {
 
         this.setOriginalURL(originalURL);
         this.setShortURL(shortURL);
         this.setUser(user);
         this.setPreviewURL(previewURL);
         this.setQrURL(qrURL);
+        this.setLongitude(longitude);
+        this.setLatitude(latitude);
 
     }
 
@@ -95,4 +105,12 @@ public class URL implements Serializable {
     public void setQrURL(String qrURL) {
         this.qrURL = qrURL;
     }
+
+    public String getLatitude() { return latitude; }
+
+    public void setLatitude(String latitude) { this.latitude = latitude; }
+
+    public String getLongitude() { return longitude; }
+
+    public void setLongitude(String longitude) { this.longitude = longitude; }
 }
