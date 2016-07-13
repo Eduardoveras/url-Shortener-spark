@@ -1,3 +1,6 @@
+/**
+ * Created by Eduardo veras on 19-Jun-16.
+ */
 import Entity.URL;
 import Entity.User;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -13,9 +16,6 @@ import java.util.Date;
 
 import static spark.Spark.*;
 
-/**
- * Created by Eduardo veras on 19-Jun-16.
- */
 public class pageCreator {
 
     static String current_username;
@@ -201,19 +201,15 @@ public class pageCreator {
             return null;
         }, new FreeMarkerEngine());
 
-
-
     }
 
     private static void generatePost() {
-
-
 
         post("/", (request, response) -> {
             String URL = request.queryParams("URL");
             String username = request.queryParams("username");
             UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
-            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(),"Dominican Republic");
+            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(),"Dominican Republic", "37.5", "-122.5");
             response.redirect("/");
             return username;
         });
