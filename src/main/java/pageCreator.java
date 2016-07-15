@@ -95,9 +95,17 @@ public class pageCreator {
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Map view");
             attributes.put("message", "Welcome");
-            List<URL> allCount = DatabaseManager.FetchAllURL();
+            if (current_username.equals("admin"))
+            {
+                List<URL> allCount = DatabaseManager.FetchAllURL();
+                attributes.put("urls",allCount);
+            }
+            else
+            {
+                List<URL> userCount = DatabaseManager.FetchAllURLForUser(current_username);
+                attributes.put("urls",userCount);
 
-            attributes.put("allCountries",allCount);
+            }
             return new ModelAndView(attributes, "map.ftl");
         }, new FreeMarkerEngine());
 

@@ -22,11 +22,11 @@
                 };
                 var data = google.visualization.arrayToDataTable([
                     ['Lat', 'Long', 'Name'],
-                    <#list allCountries as item>
-                        <#if item?is_last>
-                                [${item.getLatitude()},${item.getLongitude()},'${item.getOriginalURL()}']
+                    <#list urls as url>
+                        <#if url?is_last>
+                                [${url.getLatitude()},${url.getLongitude()},'<div class="demo-card-wide mdl-card mdl-shadow--2dp"><div class="mdl-card__title mdl-card--expand"><img class="image-pefect" src="${url.getPreviewURL()}"/></div><div class="mdl-card__title mdl-card--expand"><a href="/p/${url.getShortURL()}"><h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a></div><div class="mdl-card__supporting-text">Directs to: ${url.getOriginalURL()}</div><div class="mdl-card__actions mdl-card--border"><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/p/${url.getShortURL()}/stats">VIEW STATS</a></div><div class="mdl-card__menu"><a href="javascript:fbShare("www.acorta.do/${url.getShortURL()}", "Fb Share", "Facebook share popup", "https://www.colourbox.com/preview/2375712-vector-icon-of-scissors-all-layers-are-grouped.jpg", 520, 350)" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="material-icons">share</i></a></div></div>']
                         <#else>
-                                [${item.getLatitude()},${item.getLongitude()},'${item.getOriginalURL()}'],
+                                [${url.getLatitude()},${url.getLongitude()},'<div class="demo-card-wide mdl-card mdl-shadow--2dp"><div class="mdl-card__title mdl-card--expand"><img class="image-pefect" src="${url.getPreviewURL()}"/></div><div class="mdl-card__title mdl-card--expand"><a href="/p/${url.getShortURL()}"><h2 class="mdl-card__title-text">www.acorta.do/${url.getShortURL()}</h2></a></div><div class="mdl-card__supporting-text">Directs to: ${url.getOriginalURL()}</div><div class="mdl-card__actions mdl-card--border"><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/p/${url.getShortURL()}/stats">VIEW STATS</a></div><div class="mdl-card__menu"><a href="javascript:fbShare("www.acorta.do/${url.getShortURL()}", "Fb Share", "Facebook share popup", "https://www.colourbox.com/preview/2375712-vector-icon-of-scissors-all-layers-are-grouped.jpg", 520, 350)" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="material-icons">share</i></a></div></div>'],
                         </#if>
                     </#list>
                 ]);
@@ -42,7 +42,6 @@
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                        //data.addRow([pos.lat,pos.lng,'Your Location']);
                         map.draw(data, options);
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
