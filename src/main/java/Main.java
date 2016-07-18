@@ -22,6 +22,4 @@ public class Main {
 
         pageCreator pages = new pageCreator();
     }
-
-
 }

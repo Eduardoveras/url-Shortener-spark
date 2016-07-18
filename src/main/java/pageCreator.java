@@ -22,6 +22,7 @@ public class pageCreator {
 
     public pageCreator() throws Exception {
 
+        new JSONServiceController();
         generateGets();
         generatePost();
         generateFilters();
