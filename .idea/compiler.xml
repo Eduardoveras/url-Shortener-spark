@@ -18,9 +18,5 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="urlshort.evapps_main" target="1.8" />
-      <module name="urlshort.evapps_test" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

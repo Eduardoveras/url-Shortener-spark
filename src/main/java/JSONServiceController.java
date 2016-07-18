@@ -8,8 +8,22 @@ import static spark.Spark.get;
 public class JSONServiceController {
 
     public JSONServiceController() {
-        get("/json/allurls", (reqt, res) -> DatabaseManager.FetchAllURL(), json());
-        // more routes
+        // Fetch All Urls
+        get("/json/allurls", (req, res) -> DatabaseManager.FetchAllURL(), json());
+
+        // Fetch Specific Short Url
+        get("/jason/original/:short",  (req, res) -> {
+            String shortURL = req.params(":short");
+
+            String url = DatabaseManager.FetchOriginalURL(shortURL);
+
+            if(url != null)
+                return url;
+
+            res.status(400);
+            return
+
+        });
 
         after("/json/*",(req, res) -> {res.type("application/json");});
     }
