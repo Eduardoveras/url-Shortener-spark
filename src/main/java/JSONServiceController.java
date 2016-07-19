@@ -12,6 +12,8 @@ import static spark.Spark.get;
 public class JSONServiceController {
 
     public JSONServiceController() {
+
+        // GETS
         // Fetch All Urls
         get("/json/allurls", (req, res) -> DatabaseManager.FetchAllURL(), json());
 
@@ -51,6 +53,9 @@ public class JSONServiceController {
 
             return DatabaseManager.FetchAllURLForUser(username);
         }, json());
+
+        // POSTS
+        
 
         after("/json/*", (req, res) -> res.type("application/json"));
     }
