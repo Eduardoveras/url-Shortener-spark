@@ -285,6 +285,11 @@ public class DatabaseManager {
         return UserORMService.GetInstance().Find(username);
     }
 
+    public static URL FetchURL(String shortURL){
+
+        return URLORMService.GetInstance().Find(shortURL);
+    }
+
     // User Related Functions
     public static boolean CreateNewUser(String username, String firstName, String lastName, String password){
 
