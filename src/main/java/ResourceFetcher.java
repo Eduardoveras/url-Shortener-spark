@@ -1,3 +1,5 @@
+import JSONTools.GeoLocation;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -42,5 +44,26 @@ public class ResourceFetcher {
     }
     //public static String getCountryFromIP(String ip) return "Dom Rep";
 
+    public static GeoLocation GetCoordinates(String ip){
+
+        String url = "http://freegeoip.net/json/" + ip;
+        System.out.println(ip);
+        GeoLocation geo = null;
+
+        try {
+            String resource = Jsoup.connect(url).get().data();
+            System.out.println("\n\nResource: " + resource);
+            JSONObject obj = new JSONObject(resource);
+
+            geo = new GeoLocation(obj.getJSONObject("longitude").toString(), obj.getJSONObject("latitude").toString());
+
+        } catch (IOException exp){
+            System.out.println("\n\nIO Resource ERROR --> " + exp.getMessage());
+        } catch (Exception exp){
+            System.out.println("\n\n General Resource ERROR --> " +  exp.getMessage());
+        }
+
+        return geo;
+    }
 
 }
