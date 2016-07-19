@@ -124,10 +124,7 @@ html, body {
     box-sizing: border-box;
     align-items: center;
 }
-.full-width-card
-{
-    width: 99%;
-}
+
 .image-pefect
 {
     max-width:80%;
@@ -175,4 +172,9 @@ a {
 {
     display:none;
     opacity: 0;
+}
+
+.demo-card-wide
+{
+    max-width: 100%;
 }

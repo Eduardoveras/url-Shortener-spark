@@ -12,6 +12,7 @@
         <style>
             .demo-card-wide.mdl-card {
                 width: 410px;
+                max-width: 100%;
                 margin: 10px;
             }
 

@@ -13,8 +13,8 @@
 
         <!--LOGIN BOX-->
         <div class="mdl-grid demo-content">
-            <div class="full-centered mdl-cell mdl-cell--4-col">
-                <div class="full-width-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-cell mdl-cell--4-col">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                     <form action="" METHOD="POST">
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Welcome to URL Short</h2>
