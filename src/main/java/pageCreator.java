@@ -73,7 +73,6 @@ public class pageCreator {
 
         get("/viewall", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("message", "Welcome");
             attributes.put("pagename","View All Users");
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             List<URL> urls = DatabaseManager.FetchAllURL();
@@ -86,8 +85,14 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Register");
-            attributes.put("message", "Welcome");
             return new ModelAndView(attributes, "register.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/dev", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("user",DatabaseManager.FetchUser(current_username));
+            attributes.put("pagename","Developer Guide");
+            return new ModelAndView(attributes, "developer.ftl");
         }, new FreeMarkerEngine());
 
 
@@ -95,7 +100,6 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Map view");
-            attributes.put("message", "Welcome");
             if (current_username.equals("admin"))
             {
                 List<URL> allCount = DatabaseManager.FetchAllURL();
@@ -114,7 +118,6 @@ public class pageCreator {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             attributes.put("pagename","Login");
-            attributes.put("message", "Welcome");
             return new ModelAndView(attributes, "login.ftl");
         }, new FreeMarkerEngine());
 
@@ -129,7 +132,6 @@ public class pageCreator {
         get("/logout", (req, res) -> {
             req.session().invalidate();
             res.redirect("/");
-
             return "<h1>You have bee logged out</h1>";
         }  );
 
@@ -178,7 +180,6 @@ public class pageCreator {
         get("/p/:urlid", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("pagename","URL Page");
-            attributes.put("message", "Welcome");
             attributes.put("user",DatabaseManager.FetchUser(current_username));
             String urlid =request.params(":urlid");
             System.out.println("THE PARAM IS:" + urlid);
