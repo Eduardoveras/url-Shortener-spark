@@ -46,7 +46,13 @@ public class JSONServiceController {
 
         }, json());
 
-        after("/json/*",(req, res) -> {res.type("application/json");});
+        get("/json/:user/urls", (req, res) -> {
+            String username = req.params(":user");
+
+            return DatabaseManager.FetchAllURLForUser(username);
+        }, json());
+
+        after("/json/*", (req, res) -> res.type("application/json"));
     }
 }
 
