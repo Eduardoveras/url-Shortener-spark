@@ -3,6 +3,7 @@
  */
 import Entity.URL;
 import Entity.User;
+import JSONTools.GeoLocation;
 import JSONTools.ResponseError;
 import eu.bitwalker.useragentutils.UserAgent;
 
@@ -94,7 +95,9 @@ public class JSONServiceController {
             System.out.println("\n\nUsing JSON Service");
 
             UserAgent userAgent = UserAgent.parseUserAgentString(req.userAgent());
-            //DatabaseManager.CreateNewShortURL(req.queryParams("url"), req.params("username"), userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), req.ip(), log, lat);
+            GeoLocation geo = ResourceFetcher.GetCoordinates(req.ip());
+            System.out.println("Lon: " + geo.getLongitude() + " Lat: " + geo.getLatitude());
+            DatabaseManager.CreateNewShortURL(req.queryParams("url"), req.params("username"), userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), req.ip(), geo.getLongitude(), geo.getLatitude());
 
             res.redirect("/");
             return "Creating New User";

@@ -221,6 +221,7 @@ public class pageCreator {
             String longitude = request.queryParams("lng");
 
             UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
+            System.out.println(request.ip());
             DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), request.ip(), longitude, latitude);
             response.redirect("/");
             return username;
