@@ -1,7 +1,9 @@
 /**
  * Created by Siclait on 18/7/16.
  */
+import Entity.User;
 import JSONTools.ResponseError;
+import org.h2.engine.Database;
 
 import static JSONTools.JSONUtil.json;
 import static spark.Spark.after;
@@ -24,6 +26,23 @@ public class JSONServiceController {
 
             res.status(400);
             return new ResponseError("No url with id %s found", shortURL);
+
+        }, json());
+
+        // Fetch All Users
+        get("/json/allusers", (req, res) -> DatabaseManager.FetchAllUsers(), json());
+
+        // Fetch Specific User
+        get("/json/user/:username", (req, res) -> {
+            String username = req.params(":username");
+
+            User user = DatabaseManager.FetchUser(username);
+
+            if(user != null)
+                return user;
+
+            res.status(400);
+            return new ResponseError("No user with id %s found", username);
 
         }, json());
 
