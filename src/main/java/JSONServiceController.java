@@ -1,6 +1,7 @@
 /**
  * Created by Siclait on 18/7/16.
  */
+import Entity.URL;
 import Entity.User;
 import JSONTools.ResponseError;
 import org.h2.engine.Database;
@@ -31,6 +32,20 @@ public class JSONServiceController {
 
         }, json());
 
+        get("/json/url/:short", (req, res) -> {
+
+            String shortURL = req.params(":short");
+
+            URL url = DatabaseManager.FetchURL(shortURL);
+
+            if(url != null)
+                return url;
+
+            res.status(400);
+            return new ResponseError("No url with id %s found", shortURL);
+
+        },  json());
+
         // Fetch All Users
         get("/json/allusers", (req, res) -> DatabaseManager.FetchAllUsers(), json());
 
@@ -55,7 +70,7 @@ public class JSONServiceController {
         }, json());
 
         // POSTS
-        
+
 
         after("/json/*", (req, res) -> res.type("application/json"));
     }
