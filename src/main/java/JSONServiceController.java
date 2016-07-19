@@ -70,7 +70,9 @@ public class JSONServiceController {
         }, json());
 
         // POSTS
-
+        //DatabaseManager.CreateNewUser();
+        //DatabaseManager.CreateNewShortURL();
+        //DatabaseManager.CheckUserCredentials();
 
         after("/json/*", (req, res) -> res.type("application/json"));
     }
