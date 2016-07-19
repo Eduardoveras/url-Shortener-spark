@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="urlshort.evapps:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="org.evapps.thegroup" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="urlshort.evapps:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="org.evapps.thegroup" external.system.module.type="sourceSet" external.system.module.version="1.0" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="jpa" name="JPA">
+    <facet type="web" name="Web Gradle : app-1.0.war">
       <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="" />
-        <datasource-mapping>
-          <factory-entry name="PersistenceUnit" />
-        </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/../../src/main/resources/META-INF/persistence.xml" />
+        <webroots>
+          <root url="file://$MODULE_DIR$/../../src/main/webapp" relative="/" />
+        </webroots>
       </configuration>
     </facet>
   </component>
@@ -21,6 +18,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: com.heroku.sdk:heroku-jdbc:0.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.sparkjava:spark-core:2.4" level="project" />
     <orderEntry type="library" name="Gradle: com.sparkjava:spark-debug-tools:0.5" level="project" />
     <orderEntry type="library" name="Gradle: com.sparkjava:spark-template-freemarker:2.3" level="project" />
