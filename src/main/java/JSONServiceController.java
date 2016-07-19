@@ -4,7 +4,7 @@
 import Entity.URL;
 import Entity.User;
 import JSONTools.ResponseError;
-import org.h2.engine.Database;
+import eu.bitwalker.useragentutils.UserAgent;
 
 import static JSONTools.JSONUtil.json;
 import static spark.Spark.after;
@@ -18,8 +18,10 @@ public class JSONServiceController {
         // Fetch All Urls
         get("/json/allurls", (req, res) -> DatabaseManager.FetchAllURL(), json());
 
-        // Fetch Specific Short Url
+        // Fetch Original of a Specific Short Url
         get("/json/original/:short",  (req, res) -> {
+
+            System.out.println("\n\nUsing Jason Service");
             String shortURL = req.params(":short");
 
             String url = DatabaseManager.FetchOriginalURL(shortURL);
@@ -32,8 +34,10 @@ public class JSONServiceController {
 
         }, json());
 
+        // Fetch a Specific Short Url
         get("/json/url/:short", (req, res) -> {
 
+            System.out.println("\n\nUsing Jason Service");
             String shortURL = req.params(":short");
 
             URL url = DatabaseManager.FetchURL(shortURL);
@@ -51,6 +55,8 @@ public class JSONServiceController {
 
         // Fetch Specific User
         get("/json/user/:username", (req, res) -> {
+
+            System.out.println("\n\nUsing JSON Service");
             String username = req.params(":username");
 
             User user = DatabaseManager.FetchUser(username);
@@ -63,15 +69,37 @@ public class JSONServiceController {
 
         }, json());
 
+        // Fetch Urls of a Specific User
         get("/json/:user/urls", (req, res) -> {
+
+            System.out.println("\n\nUsing JSON Service");
             String username = req.params(":user");
 
             return DatabaseManager.FetchAllURLForUser(username);
         }, json());
 
-        // POSTS
-        //DatabaseManager.CreateNewUser();
+        // Create a new User
+        get("/json/newuser", (req, res) -> {
+
+            System.out.println("\n\nUsing JSON Service");
+            DatabaseManager.CreateNewUser(req.queryParams("username"), req.queryParams("firstname"), req.queryParams("lastname"), req.queryParams("password"));
+
+            res.redirect("/");
+            return "Creating New User";
+        }, json());
+
         //DatabaseManager.CreateNewShortURL();
+        get("/json/newurl", (req, res) -> {
+
+            System.out.println("\n\nUsing JSON Service");
+
+            UserAgent userAgent = UserAgent.parseUserAgentString(req.userAgent());
+            //DatabaseManager.CreateNewShortURL(req.queryParams("url"), req.params("username"), userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), req.ip(), log, lat);
+
+            res.redirect("/");
+            return "Creating New User";
+        }, json());
+
         //DatabaseManager.CheckUserCredentials();
 
         after("/json/*", (req, res) -> res.type("application/json"));
