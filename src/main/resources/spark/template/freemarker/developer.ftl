@@ -31,24 +31,46 @@
             }
         </style>
         <div class="mdl-grid demo-content">
-            <div class="mdl-cell mdl-cell--6-col">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="max-width: 100%; margin: 10px; min-width: 88%">
                     <div class="mdl-card__title mdl-card--expand">
-                        <a href="#"><h2 class="mdl-card__title-text">Show all urls currently on the database</h2></a>
+                        <a href="#"><h2 class="mdl-card__title-text">Set post ID for testing</h2></a>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <form action="#">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="post_id">
+                                <label class="mdl-textfield__label" for="post_id">Post ID...</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="setValues()">
+                            Config examples
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col">
+                <div class="to_hide demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title mdl-card--expand">
+                        <h2  class="mdl-card__title-text">Show all urls on the database</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
                         To get all the url's of the system, you can access via this url: XXXXXXXXXXX
                         Also, you can click on the button below to access the JSON example for your current user
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/json/allurls">
+                        <a id="first" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" >
                             VIEW JSON EXAMPLE
                         </a>
                     </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="to_hide demo-card-wide mdl-card mdl-shadow--2dp">
 
                     <div class="mdl-card__title mdl-card--expand">
                         <a href="#"><h2 class="mdl-card__title-text">Get the original url form the ID</h2></a>
@@ -58,14 +80,14 @@
                         Also, you can click on the button below to access the JSON example for your current user
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/json/original/2342342">
+                        <a id="second" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" >
                             VIEW JSON EXAMPLE
                         </a>
                     </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="to_hide demo-card-wide mdl-card mdl-shadow--2dp">
 
                     <div class="mdl-card__title mdl-card--expand">
                         <a href="#"><h2 class="mdl-card__title-text">Get Short URL</h2></a>
@@ -75,14 +97,14 @@
                         Also, you can click on the button below to access the JSON example for your current user
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/json/url/24344324">
+                        <a id="third"class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                             VIEW JSON EXAMPLE
                         </a>
                     </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="to_hide demo-card-wide mdl-card mdl-shadow--2dp">
 
                     <div class="mdl-card__title mdl-card--expand">
                         <a href="#"><h2 class="mdl-card__title-text">Show a user urls</h2></a>
@@ -92,14 +114,14 @@
                         Also, you can click on the button below to access the JSON example for your current user
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/json/allusers">
+                        <a id="fourth" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                             VIEW JSON EXAMPLE
                         </a>
                     </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="to_hide demo-card-wide mdl-card mdl-shadow--2dp">
 
                     <div class="mdl-card__title mdl-card--expand">
                         <a href="#"><h2 class="mdl-card__title-text">Show a user urls</h2></a>
@@ -109,14 +131,14 @@
                         Also, you can click on the button below to access the JSON example for your current user
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/json/user/admin">
+                        <a id="fifth"class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" >
                             VIEW JSON EXAMPLE
                         </a>
                     </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="to_hide demo-card-wide mdl-card mdl-shadow--2dp">
 
                     <div class="mdl-card__title mdl-card--expand">
                         <a href="#"><h2 class="mdl-card__title-text">Show a user urls</h2></a>
@@ -126,13 +148,36 @@
                         Also, you can click on the button below to access the JSON example for your current user
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/json/user/admin">
+                        <a id="sixth" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                             VIEW JSON EXAMPLE
                         </a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.to_hide').hide();
+            var first = $("#first");
+            var second =$("#second")
+            var third = $("#third")
+            var fourth = $("#fourth");
+            var fifth = $("#fifth");
+            var sixth = $("#sixth");
+
+            function setValues() {
+                $('.to_hide').show( "slow" );
+                var theId= $('#post_id').val();
+                console.log("ENTRAMO " +theId)
+                first.attr("href", "/json/allurls");
+                second.attr("href", "/json/original/"+theId);
+                third.attr("href", "/json/url/"+theId);
+                fourth.attr("href", "/json/allusers");
+                fifth.attr("href", "/json/user/admin");
+                sixth.attr("href", "/json/admin/urls");
+            }
+
+        </script>
 
 
     </main>
