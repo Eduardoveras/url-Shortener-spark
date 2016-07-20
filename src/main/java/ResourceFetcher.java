@@ -52,7 +52,7 @@ public class ResourceFetcher {
 
         try {
             System.out.println("\n\nPING!");
-            String resource = Jsoup.connect(url).get().title();
+            String resource = Jsoup.connect(url).get().data();
             System.out.println("\n\nResource: " + resource);
             JSONObject obj = new JSONObject(resource);
 
