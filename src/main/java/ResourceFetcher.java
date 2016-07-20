@@ -46,12 +46,13 @@ public class ResourceFetcher {
 
     public static GeoLocation GetCoordinates(String ip){
 
-        String url = "http://freegeoip.net/json/" + ip;
+        String url = "http://ip-api.com/json/" + ip;
         System.out.println(ip);
         GeoLocation geo = null;
 
         try {
-            String resource = Jsoup.connect(url).get().data();
+            System.out.println("\n\nPING!");
+            String resource = Jsoup.connect(url).get().title();
             System.out.println("\n\nResource: " + resource);
             JSONObject obj = new JSONObject(resource);
 
