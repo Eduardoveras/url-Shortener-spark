@@ -95,15 +95,13 @@ public class JSONServiceController {
             System.out.println("\n\nUsing JSON Service");
 
             UserAgent userAgent = UserAgent.parseUserAgentString(req.userAgent());
-            GeoLocation geo = ResourceFetcher.GetCoordinates(req.ip());
-            System.out.println("Lon: " + geo.getLongitude() + " Lat: " + geo.getLatitude());
-            DatabaseManager.CreateNewShortURL(req.queryParams("url"), req.params("username"), userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), req.ip(), geo.getLongitude(), geo.getLatitude());
+            //GeoLocation geo = ResourceFetcher.GetCoordinates(req.ip());
+            //System.out.println("Lon: " + geo.getLongitude() + " Lat: " + geo.getLatitude());
+            DatabaseManager.CreateNewShortURL(req.queryParams("url"), req.queryParams("username"), userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), req.ip(), "0", "0");
 
             res.redirect("/");
             return "Creating New User";
         }, json());
-
-        //DatabaseManager.CheckUserCredentials();
 
         after("/json/*", (req, res) -> res.type("application/json"));
     }
