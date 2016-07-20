@@ -222,7 +222,8 @@ public class pageCreator {
             String longitude = request.queryParams("lng");
 
             UserAgent userAgent = UserAgent.parseUserAgentString(request.userAgent());
-            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(),"Dominican Republic", latitude, longitude);
+            System.out.println(request.ip());
+            DatabaseManager.CreateNewShortURL(URL,username, userAgent.getBrowser().getName(), userAgent.getOperatingSystem().getName(), request.ip(), longitude, latitude);
             response.redirect("/");
             return username;
         });
