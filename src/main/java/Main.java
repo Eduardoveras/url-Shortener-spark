@@ -16,7 +16,9 @@ public class Main {
 
         setPort(port);
 
-        staticFileLocation("/public");
+        staticFiles.location("/public"); // Static files
+
+        //staticFileLocation("/public");
 
         DatabaseManager.BootDataBase();
 

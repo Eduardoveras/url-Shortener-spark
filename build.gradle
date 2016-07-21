@@ -12,7 +12,7 @@ applicationName = 'app'
 defaultTasks = ['stage']
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.6'
+    gradleVersion = '2.7'
 }
 
 repositories {
@@ -66,6 +66,6 @@ dependencies {
 }
 
 task stage {
-    dependsOn installDist
+    dependsOn installApp
 }
 
