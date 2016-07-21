@@ -85,8 +85,8 @@
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                        $('#lat').val(pos.lat);
-                        $('#lng').val(pos.lng);
+                        $('#lat').val(pos.lng);
+                        $('#lng').val(pos.lat);
                     }, function () {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
@@ -96,8 +96,6 @@
                 }
 
             </script>
-
-
         </div>
     </main>
 </div>
