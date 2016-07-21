@@ -11,7 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="urlshort.evapps_main" />
     <orderEntry type="library" name="Gradle: com.heroku.sdk:heroku-jdbc:0.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.sparkjava:spark-core:2.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.sparkjava:spark-core:2.5" level="project" />
     <orderEntry type="library" name="Gradle: com.sparkjava:spark-debug-tools:0.5" level="project" />
     <orderEntry type="library" name="Gradle: com.sparkjava:spark-template-freemarker:2.3" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-simple:1.7.21" level="project" />

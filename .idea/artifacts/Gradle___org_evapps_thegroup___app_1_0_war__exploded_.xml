@@ -13,7 +13,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Gradle: com.heroku.sdk:heroku-jdbc:0.1.1" />
-          <element id="library" level="project" name="Gradle: com.sparkjava:spark-core:2.4" />
+          <element id="library" level="project" name="Gradle: com.sparkjava:spark-core:2.5" />
           <element id="library" level="project" name="Gradle: com.sparkjava:spark-debug-tools:0.5" />
           <element id="library" level="project" name="Gradle: com.sparkjava:spark-template-freemarker:2.3" />
           <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.21" />
